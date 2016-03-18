@@ -5,4 +5,4 @@ March Madness
 
 ## Technology
 
-PHP & CodeIgniter
+PHP, CodeIgniter, MySQL
