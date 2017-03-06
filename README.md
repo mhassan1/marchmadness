@@ -6,3 +6,7 @@ March Madness
 ## Technology
 
 PHP, CodeIgniter, MySQL
+
+## Updating Picks
+
+Add "curl localhost/marchmadness/index.php/update" to a cron
