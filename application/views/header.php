@@ -21,7 +21,7 @@
 <nav class="navbar navbar-custom navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
-          <a class="navbar-brand" href="/marchmadness.php">Hassan/Nuba March Madness 2016</a>
+          <a class="navbar-brand" href="/marchmadness">Hassan/Nuba March Madness 2016</a>
         </div>
 
 <?php if($this->session->userdata('username')) { ?>
