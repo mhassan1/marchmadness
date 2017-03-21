@@ -10,7 +10,7 @@
 Correct picks are automatically updated every 15 mins.<br/>
 (Last Update: <?php foreach ($lastupdate as $d) {echo date("m/d g:i A",strtotime($d->last_update)); break;} ?>)</p>
 
-<table class="table"><thead><tr><th>User</th><th>Current</th><th>Potential</th></tr></thead>
+<table class="table"><thead><tr><th>User</th><th>Current</th><th>Potential</th><th>Pick</th></tr></thead>
 
 <tbody>
 
@@ -34,6 +34,8 @@ style="cursor:pointer;">
 <td><?=$m->points?></td>
 
 <td><?=$m->potential?></td>
+
+<td><span style="<?=$m->finalpickformat3?>"><?=$m->finalpick?></span></td>
 
 </tr>
 

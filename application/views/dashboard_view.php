@@ -8,7 +8,7 @@
 
 <?php }else{ ?>
 
-<div id="standings_outer" class="col-md-2" style="padding-right:0px;">
+<div id="standings_outer" class="col-md-3" style="padding-right:0px;">
 
 <?php
 
@@ -20,7 +20,7 @@ $this->load->view('standings_view',$data);
 
 </div>
 
-<div id="brackets_outer" class="col-md-10">
+<div id="brackets_outer" class="col-md-9">
 
 <?php
 
