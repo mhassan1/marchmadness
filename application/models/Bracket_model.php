@@ -6,13 +6,13 @@ class Bracket_model extends CI_Model {
 		$user_query = 'select username from madness_users where (submitted=1 and active_in=1) or username=\'admin\'';
 		$bracket_query = 'select a.username,b.bracket_id,b.c,b.r,c.team_name,a.format3,b.style,b.round,b.fixed from madness_format3_view a, '
 			.'madness_bracket_mappings b, '
-			.'madness_bracket_mappings c '
+			.'madness_bracket_mappings_names c '
 			.'where a.mypick=c.bracket_id and '
 			.'a.bracket_id=b.bracket_id '
 			.'and b.fixed=0 '
 			.'union all '
 			.'select a.username,b.bracket_id,b.c,b.r,b.team_name,\'color:black;\',b.style,b.round,b.fixed '
-			.'from madness_users a,madness_bracket_mappings b where b.fixed=1 or b.fixed is null';
+			.'from madness_users a,madness_bracket_mappings_names b where b.fixed=1 or b.fixed is null';
 		return $this->get($user_query, $bracket_query);
 	}
 
@@ -20,14 +20,14 @@ class Bracket_model extends CI_Model {
 		$user_query = 'select username from madness_users where username=\''.$this->session->userdata('username').'\'';
 		$bracket_query = 'select a.username,b.bracket_id,b.c,b.r,c.team_name,a.format3,b.style,b.round,b.fixed from madness_format3_view a, '
 			.'madness_bracket_mappings b, '
-			.'madness_bracket_mappings c '
+			.'madness_bracket_mappings_names c '
 			.'where a.mypick=c.bracket_id and '
 			.'a.bracket_id=b.bracket_id '
 			.'and b.fixed=0 '
 			.'and a.username=\''.$this->session->userdata('username').'\' '
 			.'union all '
 			.'select a.username,b.bracket_id,b.c,b.r,b.team_name,\'color:black;\',b.style,b.round,b.fixed '
-			.'from madness_users a,madness_bracket_mappings b where (b.fixed=1 or b.fixed is null) '
+			.'from madness_users a,madness_bracket_mappings_names b where (b.fixed=1 or b.fixed is null) '
 			.'and a.username=\''.$this->session->userdata('username').'\'';
 		return $this->get($user_query, $bracket_query)[$this->session->userdata('username')];
 	}
@@ -59,4 +59,3 @@ class Bracket_model extends CI_Model {
 }
 
 ?>
-

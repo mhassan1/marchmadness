@@ -26,7 +26,7 @@ $format3=$bracket[$j][$i]['format3'];
 
 
 
-if ($fixed!=null) { 
+if ($fixed!=null) {
 
 
 

@@ -4,13 +4,13 @@
 
  <head>
 
-   <title>Hassan/Nuba March Madness 2016</title>
+   <title>March Madness</title>
 
-<link rel="stylesheet" type="text/css" href="/marchmadness/css/bootstrap.min.css" media="all" />
+<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" media="all" />
 
-<link rel="stylesheet" type="text/css" href="/marchmadness/css/bootstrap-theme.min.css" media="all" />
+<link rel="stylesheet" type="text/css" href="/css/bootstrap-theme.min.css" media="all" />
 
-<link rel="stylesheet" type="text/css" href="/marchmadness/css/theme.css" media="all" />
+<link rel="stylesheet" type="text/css" href="/css/theme.css" media="all" />
 
  </head>
 
@@ -21,7 +21,7 @@
 <nav class="navbar navbar-custom navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
-          <a class="navbar-brand" href="/marchmadness">Hassan/Nuba March Madness 2016</a>
+          <a class="navbar-brand" href="/">March Madness</a>
         </div>
 
 <?php if($this->session->userdata('username')) { ?>
@@ -29,6 +29,7 @@
           <ul class="nav navbar-nav">
             <li><a href="bracket">My Bracket</a></li>
             <li><a href="dashboard">Standings</a></li>
+            <?php if($this->session->userdata('username')=='admin') { ?><li><a href="setup">Setup</a></li><?php } ?>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li><span class="navbar-text">Welcome, <?=$this->session->userdata('username')?>!</span></li>

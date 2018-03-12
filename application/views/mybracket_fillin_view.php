@@ -115,7 +115,7 @@ return true;
 
 <div class="page-header"><h3>My Bracket</h3></div>
 
-<p>Make your picks below! If you'd like to save your progress and continue later, click Save. When you are done, click Submit! Please submit your picks before the first game starts on Tuesday, 3/15!</p>
+<p>Make your picks below! If you'd like to save your progress and continue later, click Save. When you are done, click Submit! Please submit your picks before the first game starts!</p>
 
 </br>
 
@@ -165,7 +165,7 @@ if ($fixed!='')
 
 
 
-{ 
+{
 
 
 

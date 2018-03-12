@@ -7,7 +7,7 @@ class BracketFillin_model extends CI_Model {
 			.'FROM madness_bracket_mappings a '
 			.'left outer join '
 			.'madness_brackets b on a.bracket_id=b.bracket_id and b.username="'.$this->session->userdata('username').'", '
-			.'madness_bracket_mappings c '
+			.'madness_bracket_mappings_names c '
 			.'where (ifnull(b.pick,a.bracket_id)=c.bracket_id)');
 
 		$a = array(array(array()));

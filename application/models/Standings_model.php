@@ -17,7 +17,7 @@ class Standings_model extends CI_Model {
 		$a = $query->result();
 		return $a;
 	}
-	
+
 	function getLastCorrectUpdate() {
 		$query = $this -> db -> query('select last_update from madness_msnbc_games_update');
 		$a = $query->result();

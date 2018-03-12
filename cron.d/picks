@@ -1,0 +1,1 @@
+*/15 * * * * curl localhost/index.php/update

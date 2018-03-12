@@ -4,7 +4,7 @@
 
 
 
-   <p>Welcome to Hassan/Nuba March Madness 2016! Enter your unique username and password below!</p>
+   <p>Welcome to March Madness! Enter your unique username and password below!</p>
 
    <span style="color:red;"><?php echo validation_errors(); ?></span>
 
@@ -20,7 +20,7 @@
 
      <td>Password:</td>
 
-     <td><input type="password" size="20" id="passowrd" name="password"/></td>
+     <td><input type="password" size="20" id="password" name="password"/></td>
 
      </tr>
 
@@ -33,4 +33,3 @@
  </body>
 
 </html>
-
