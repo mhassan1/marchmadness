@@ -1,1 +1,1 @@
-*/15 * * * * curl localhost/index.php/update
+*/15 * * * * root curl localhost/index.php/update

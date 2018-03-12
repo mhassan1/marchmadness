@@ -24,7 +24,7 @@ REPLACE INTO `madness_msnbc_teams` (`msnbc_team_id`, `msnbc_team_name`, `team_na
 (585, 'TEXAS', 'Texas'),
 (418, 'NIOWA', 'N Iowa'),
 (587, 'TEXASA&M', 'Texas A&M'),
-(652, 'WI-GREENBAY', 'Wisconsin Green Bay'),
+(652, 'WI-GREENBAY', 'Green Bay'),
 (450, 'OREGONST', 'Oregon St'),
 (613, 'VACOMMONWEALTH', 'VCU'),
 (444, 'OKLAHOMA', 'Oklahoma'),
@@ -100,7 +100,7 @@ REPLACE INTO `madness_msnbc_teams` (`msnbc_team_id`, `msnbc_team_name`, `team_na
 (97, 'CANISIUS', ''),
 (102, 'CCONNST', ''),
 (101, 'CENTENARY', ''),
-(111, 'CHARLESTONSO', 'Charleston'),
+(111, 'CHARLESTONSO', 'Charleston South'),
 (395, 'CHARLOTTE', ''),
 (112, 'CHICAGOST', ''),
 (120, 'CLEMSON', 'Clemson'),
@@ -303,8 +303,8 @@ REPLACE INTO `madness_msnbc_teams` (`msnbc_team_id`, `msnbc_team_name`, `team_na
 (89, 'UC-IRVINE', ''),
 (606, 'UCLA', 'UCLA'),
 (501, 'UC-SANTABARBARA', ''),
-(396, 'UNC-GREENSBORO', ''),
-(401, 'UNLV', ''),
+(396, 'UNC-GREENSBORO', 'UNCG'),
+(401, 'UNLV', 'UNLV'),
 (611, 'UTAHST', ''),
 (589, 'UTEP', ''),
 (614, 'VALPARAISO', ''),
@@ -326,7 +326,8 @@ REPLACE INTO `madness_msnbc_teams` (`msnbc_team_id`, `msnbc_team_name`, `team_na
 (661, 'WYOMING', ''),
 (685, 'YOUNGSTOWNST', ''),
 (907, '', 'NC Central'),
-(411, '', 'N Carolina St');
+(411, '', 'N Carolina St'),
+(107, '', 'Charleston');
 
 REPLACE INTO `madness_users` (`username`, `password`) VALUES
 ('test', '5ebe2294ecd0e0f08eab7690d2a6ee69'); # secret

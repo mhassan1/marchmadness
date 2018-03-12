@@ -13,7 +13,7 @@ class Standings_model extends CI_Model {
 			.'where a.username=b.username '
 			.'and b.active_in=1 and (b.submitted=1 or b.username=\'admin\') '
 			.'group by b.username '
-			.'order by if(b.username=\'admin\',1,0) asc, points desc, username asc');
+			.'order by if(b.username=\'admin\',1,0) asc, points desc, potential desc, username asc');
 		$a = $query->result();
 		return $a;
 	}
