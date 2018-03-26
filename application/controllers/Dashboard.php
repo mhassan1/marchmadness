@@ -14,14 +14,16 @@ class Dashboard extends CI_Controller {
 		$this->load->model('Bracket_model','',TRUE);
 		$brackets = $this->Bracket_model->getAll();
 		$data['brackets']=$brackets;
-		
+
 		$this->load->model('User_model','',TRUE);
 		$data['users']=$this->User_model->getAllSubmitted();
 
 		$this->load->model('Standings_model','',TRUE);
 		$standings = $this->Standings_model->get();
-		$data['standings']=$standings;
-		
+		$this->load->model('Analyze_model','',TRUE);
+		$this->Standings_model->combine($standings, $this->Analyze_model->analyze());
+		$data['standings'] = $standings;
+
 		$lastupdate = $this->Standings_model->getLastCorrectUpdate();
 		$data['lastupdate']=$lastupdate;
 

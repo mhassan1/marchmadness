@@ -2,7 +2,9 @@
 
 
 
-<p>Check out the standings! 'Current' is the number of points so far, 'Potential' is the number of possible points if all the remaining picks are correct!</p>
+<p>Check out the standings! 'Curr.' is the number of points so far,
+  'Poss.' is the number of possible points if all the remaining picks are correct,
+  and 'Pred.' is the predicted likelihood of winning (only available after the Elite 8)!</p>
 
 <p>Correct Round 1 picks are worth 40 points, Round 2 picks are worth 80 points, Round 3 picks are worth 160 points, etc.</p>
 
@@ -10,7 +12,7 @@
 Correct picks are automatically updated every 15 mins.<br/>
 (Last Update: <?php foreach ($lastupdate as $d) {echo date("m/d g:i A",strtotime($d->last_update)); break;} ?>)</p>
 
-<table class="table"><thead><tr><th>User</th><th>Current</th><th>Potential</th><th>Pick</th></tr></thead>
+<table class="table"><thead><tr><th>User</th><th>Curr.</th><th>Poss.</th><th>Pred.</th><th>Pick</th></tr></thead>
 
 <tbody>
 
@@ -26,7 +28,7 @@ document.getElementById("row-"+v).style.backgroundColor="lightgrey";
 
 <?php foreach ($standings as $m) { ?>
 
-<tr class="standings_rows" id="row-<?=$m->username?>" onclick="javascript:showBracket(this.id.substring(4)); makeActive(this.id.substring(4));" 
+<tr class="standings_rows" id="row-<?=$m->username?>" onclick="javascript:showBracket(this.id.substring(4)); makeActive(this.id.substring(4));"
 style="cursor:pointer;">
 
 <td><?php if($m->username=='admin'){echo 'Correct';} else {echo $m->username;}?></td>
@@ -34,6 +36,8 @@ style="cursor:pointer;">
 <td><?=$m->points?></td>
 
 <td><?=$m->potential?></td>
+
+<td><?=$m->username != 'admin'?isset($m->winFrequency)?$m->winFrequency.'%':'N/A':''?></td>
 
 <td><span style="<?=$m->finalpickformat3?>"><?=$m->finalpick?></span></td>
 
@@ -46,7 +50,7 @@ style="cursor:pointer;">
 </table>
 
 
-<?php 
+<?php
 
 $cur='';$pot='';$un='';
 

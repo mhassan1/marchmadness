@@ -18,6 +18,25 @@ class Standings_model extends CI_Model {
 		return $a;
 	}
 
+	function combine(&$standings, $winFrequency) {
+		if(!isset($winFrequency)) return;
+
+		foreach($standings as $v){
+			if ($v->username == 'admin') $v->winFrequency = 0;
+			else $v->winFrequency = $winFrequency[$v->username];
+		}
+		$sorts = ['admin'=>[],'winFrequency'=>[],'points'=>[],'potential'=>[],'username'=>[]];
+    foreach ($standings as $v) {
+      $sorts['admin'][] = $v->username == 'admin';
+      $sorts['winFrequency'][] = $v->winFrequency;
+      $sorts['points'][] = $v->points;
+      $sorts['potential'][] = $v->potential;
+      $sorts['username'][] = $v->username;
+    }
+    array_multisort($sorts['admin'], SORT_ASC, $sorts['winFrequency'], SORT_DESC,
+			$sorts['points'], SORT_DESC, $sorts['potential'], SORT_DESC, $sorts['username'], SORT_ASC, $standings);
+	}
+
 	function getLastCorrectUpdate() {
 		$query = $this -> db -> query('select last_update from madness_msnbc_games_update');
 		$a = $query->result();
