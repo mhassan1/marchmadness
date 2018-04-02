@@ -34,7 +34,8 @@ Class Analyze_model extends CI_Model {
 		for($i = 0; $i < $simCount; $i++){
 			$hiers = [];
 			$sim = [];
-			foreach($adminPicks as $k => $v){
+			$k = 0;
+			foreach($adminPicks as $v){
 				if($v->fixed){
 					$sim[] = $v->rightpick;
 					continue;
@@ -43,13 +44,13 @@ Class Analyze_model extends CI_Model {
 				$pick = isset($hiers[$v->hier.'.'.$j])?$hiers[$v->hier.'.'.$j]:$hierLookup[$v->hier.'.'.$j];
 				$sim[] = $pick;
 				$hiers[$v->hier] = $pick;
+				$k++;
 			}
 			$scores = [];
 			foreach($usernames as $username){
 				if ($username == 'admin') continue;
 				$scores[$username] = score($allPicks, $username, $sim);
 			}
-
 			$winners = array_keys($scores, max($scores));
 			foreach($winners as $username){
 				$winCounts[$username] = (isset($winCounts[$username])?$winCounts[$username]:0) + (1 / count($winners));
