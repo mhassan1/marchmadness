@@ -12,7 +12,7 @@ Class Update_model extends CI_Model {
 			echo htmlspecialchars($res)."<br/>";
 			$obj = json_decode($res);
 			$games = $obj->{'games'};
-	
+
 			foreach ($games as $game) {
 				echo "<br/>";
 				$dom = new DOMDocument;
@@ -22,12 +22,12 @@ Class Update_model extends CI_Model {
 					$team1_id = $team1->getAttribute('id');
 					$team1_name = $team1->getAttribute('alias');
 					$team1_score = $team1->getAttribute('score');
-			
+
 					$team2 = $dom->getElementsByTagName('home-team')->item(0);
 					$team2_id = $team2->getAttribute('id');
 					$team2_name = $team2->getAttribute('alias');
 					$team2_score = $team2->getAttribute('score');
-			
+
 					// upsert here
 					$query = "insert into madness_msnbc_games (team1_id, team2_id, team1_name, team2_name, team1_score, team2_score) "
 						."values (" . $team1_id . "," . $team2_id . ",'" . $team1_name . "','" . $team2_name . "'," . $team1_score . "," . $team2_score . ") "
@@ -44,7 +44,7 @@ Class Update_model extends CI_Model {
 			"on duplicate key update pick = v.pick";
 		$this -> db -> query($finalquery);
 
-		$timestampquery = "update madness_msnbc_games_update set last_update = '".date('Y-m-d H:i:s',$timestamp=time()-4*60*60)."'";
+		$timestampquery = "update madness_msnbc_games_update set last_update = UTC_TIMESTAMP()";
 		$this -> db -> query($timestampquery);
 	}
 }

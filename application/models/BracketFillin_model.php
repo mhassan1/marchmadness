@@ -10,21 +10,21 @@ class BracketFillin_model extends CI_Model {
 			.'madness_bracket_mappings_names c '
 			.'where (ifnull(b.pick,a.bracket_id)=c.bracket_id)');
 
-		$a = array(array(array()));
+		$a = array(array());
 		for ($i=1;$i<=11;$i++) {
 			for ($j=1;$j<=66;$j++) {
-				$a[$this->session->userdata('username')][$i][$j]=array("bracket_id"=>0,"style"=>"","hier"=>"","pick"=>"","team_name"=>"","round"=>"","fixed"=>"");
+				$a[$i][$j]=array("bracket_id"=>0,"style"=>"","hier"=>"","pick"=>"","team_name"=>"","round"=>"","fixed"=>"");
 			}
 		}
 
 		foreach ($query->result() as $row) {
-			$a[$this->session->userdata('username')][$row->c][$row->r]["bracket_id"]=$row->bracket_id;
-			$a[$this->session->userdata('username')][$row->c][$row->r]["style"]=$row->style;
-			$a[$this->session->userdata('username')][$row->c][$row->r]["hier"]=$row->hier;
-			$a[$this->session->userdata('username')][$row->c][$row->r]["pick"]=$row->pick;
-			$a[$this->session->userdata('username')][$row->c][$row->r]["team_name"]=$row->team_name;
-			$a[$this->session->userdata('username')][$row->c][$row->r]["round"]=$row->round;
-			$a[$this->session->userdata('username')][$row->c][$row->r]["fixed"]=$row->fixed;
+			$a[$row->c][$row->r]["bracket_id"]=$row->bracket_id;
+			$a[$row->c][$row->r]["style"]=$row->style;
+			$a[$row->c][$row->r]["hier"]=$row->hier;
+			$a[$row->c][$row->r]["pick"]=$row->pick;
+			$a[$row->c][$row->r]["team_name"]=$row->team_name;
+			$a[$row->c][$row->r]["round"]=$row->round;
+			$a[$row->c][$row->r]["fixed"]=$row->fixed;
 		}
 		return $a;
 	}

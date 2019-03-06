@@ -7,7 +7,6 @@ class Bracket extends CI_Controller {
 		if(!$this->session->userdata('username')) {redirect('login', 'refresh');}
 	}
 
-
 	public function index() {
 
 		$this->load->model('UserActivity_model','',TRUE);
@@ -18,14 +17,11 @@ class Bracket extends CI_Controller {
 			$data['bracket'] = $this->Bracket_model->getMine();
 		} else {
 			$this->load->model('BracketFillin_model','',TRUE);
-			$data['bracketfillin'] = $this->BracketFillin_model->get();
+			$data['bracket'] = $this->BracketFillin_model->get();
 		}
 
-		if (isset($data['bracket'])) {
-			$this->load->view('mybracket_view', $data);
-		} else {
-			$this->load->view('mybracket_fillin_view', $data);
-		}
+		header('Content-Type: application/json');
+		echo json_encode($data);
 	}
 
 
@@ -34,7 +30,6 @@ class Bracket extends CI_Controller {
 		$this->load->model('BracketFillin_model','',TRUE);
 		$this->BracketFillin_model->submit();
 		if (isset($_POST['submit'])) {$this->session->set_userdata('submitted',1);}
-		redirect('bracket','refresh');
 	}
 
 

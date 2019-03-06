@@ -51,7 +51,11 @@ Class Analyze_model extends CI_Model {
 				if ($username == 'admin') continue;
 				$scores[$username] = score($allPicks, $username, $sim);
 			}
-			$winners = array_keys($scores, max($scores));
+			if (count($scores) > 0) {
+				$winners = array_keys($scores, max($scores));
+			} else {
+				$winners = [];
+			}
 			foreach($winners as $username){
 				$winCounts[$username] = (isset($winCounts[$username])?$winCounts[$username]:0) + (1 / count($winners));
 			}

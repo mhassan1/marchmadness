@@ -25,9 +25,11 @@ class Dashboard extends CI_Controller {
 		$data['standings'] = $standings;
 
 		$lastupdate = $this->Standings_model->getLastCorrectUpdate();
-		$data['lastupdate']=$lastupdate;
+		$lastupdate = date_create_from_format('Y-m-d H:i:s', $lastupdate[0]->last_update, timezone_open('UTC'));
+		$data['lastupdate'] = date_format($lastupdate, 'c');
 
-		$this->load->view('dashboard_view', $data);
+		header('Content-Type: application/json');
+		echo json_encode($data);
 	}
 }
 
