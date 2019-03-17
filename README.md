@@ -5,7 +5,7 @@ March Madness
 
 ## Technology
 
-PHP, CodeIgniter, MySQL
+PHP, CodeIgniter, React, MySQL
 
 ## Setup
 
@@ -29,6 +29,8 @@ Teams can be found here (click on a team to see the "msnbc_team_id" in the URL):
 Picks are automatically updated every 15 minutes by the MSNBC cron.
 
 ## Development
+
+To rebuild React assets, enter the running container, `yarn build` or `yarn watch`.
 
 **MySQL**
 Port: 3306
