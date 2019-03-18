@@ -13,5 +13,4 @@ COPY . /var/www/example.com/public_html/
 COPY ./cron.d/picks /etc/cron.d/picks
 RUN chmod 644 /etc/cron.d/picks
 
-RUN cd react && yarn && yarn build
 CMD ["sh", "entrypoint.sh"]
