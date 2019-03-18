@@ -330,4 +330,5 @@ REPLACE INTO `madness_msnbc_teams` (`msnbc_team_id`, `msnbc_team_name`, `team_na
 (107, '', 'Charleston');
 
 REPLACE INTO `madness_users` (`username`, `password`) VALUES
-('test', '5ebe2294ecd0e0f08eab7690d2a6ee69'); # secret
+('admin', MD5('secret')),
+('test', MD5('test'));

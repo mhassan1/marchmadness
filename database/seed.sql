@@ -9,7 +9,7 @@ SET @TOPRIGHT = 'EAST';
 SET @BOTTOMLEFT = 'WEST';
 SET @BOTTOMRIGHT = 'MIDWEST';
 
-INSERT INTO `madness_bracket_mappings` (`bracket_id`, `c`, `r`, `style`, `hier`, `round`, `fixed`, `label`, `seed`) VALUES
+REPLACE INTO `madness_bracket_mappings` (`bracket_id`, `c`, `r`, `style`, `hier`, `round`, `fixed`, `label`, `seed`) VALUES
 (233, 5, 59, '{"borderLeft":"1px solid black"}', '', NULL, NULL, '', NULL),
 (232, 5, 58, '{"borderLeft":"1px solid black"}', '', NULL, NULL, '', NULL),
 (231, 5, 57, '{"borderLeft":"1px solid black"}', '', NULL, NULL, '', NULL),
