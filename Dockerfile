@@ -12,11 +12,6 @@ RUN sed -i "s/.*bind-address.*/bind-address = 0.0.0.0/" /etc/mysql/my.cnf
 COPY . /var/www/example.com/public_html/
 COPY ./cron.d/picks /etc/cron.d/picks
 RUN chmod 644 /etc/cron.d/picks
+
 RUN cd react && yarn && yarn build
-RUN service apache2 start
-RUN service mysql start
-RUN cron
-RUN sh database/db_init.sh
-RUN sh database/db_seed.sh
-RUN sh database/db_update.sh
 CMD ["sh", "entrypoint.sh"]
