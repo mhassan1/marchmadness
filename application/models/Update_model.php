@@ -6,7 +6,7 @@ Class Update_model extends CI_Model {
 		$dates = array(date('Ymd',$timestamp=time()), date('Ymd',$timestamp=time()-24*60*60));
 
 		foreach ($dates as $date) {
-			$url = "http://scores.nbcsports.msnbc.com/ticker/data/gamesNEW.js.asp?sport=CBK&period=".$date."&random=1458147354771";
+			$url = "https://scores.nbcsports.com/ticker/data/gamesNEW.js.asp?sport=CBK&period=".$date."&random=1458147354771";
 			echo "$url<br/>";
 			$res = file_get_contents($url);
 			echo htmlspecialchars($res)."<br/>";
