@@ -32,7 +32,7 @@ export default class Dashboard extends Component {
 
   onSelectUser(event) {
     event.preventDefault()
-    this.setState({selectedUser: event.target.parentElement.getAttribute('data-username')})
+    this.setState({selectedUser: event.target.closest('tr').getAttribute('data-username')})
   }
 
   render() {
