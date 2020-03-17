@@ -15,7 +15,7 @@ export default class BracketSetup extends Component {
   }
 
   componentDidMount() {
-    this._asyncRequest = axios.get(__API_HOST__ + 'setup').then(
+    this._asyncRequest = axios.get(API_URL + '/setup').then(
       ({data: setup}) => {
         this._asyncRequest = null
         this.setState({setup})
@@ -31,8 +31,12 @@ export default class BracketSetup extends Component {
 
   handleSubmit(event) {
     event.preventDefault()
-    const data = new FormData(event.target)
-    axios.post(__API_HOST__ + 'setup/submit', data).then(onSuccess, onFailure)
+    const formData = new FormData(event.target)
+    const data = {}
+    formData.forEach((value, key) => {
+      data[key] = value
+    })
+    axios.post(API_URL + '/setup', data).then(onSuccess, onFailure)
   }
 
   render() {

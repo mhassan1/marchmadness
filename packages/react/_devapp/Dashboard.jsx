@@ -16,7 +16,7 @@ export default class Dashboard extends Component {
   }
 
   componentDidMount() {
-    this._asyncRequest = axios.get(__API_HOST__ + '/dashboard').then(
+    this._asyncRequest = axios.get(API_URL + '/dashboard').then(
       ({data: standings}) => {
         this._asyncRequest = null
         this.setState({standings})

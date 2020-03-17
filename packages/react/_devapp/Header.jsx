@@ -1,11 +1,10 @@
 import React, { Component, Fragment } from 'react'
 import { render } from 'react-dom'
-import myApp from 'myApp'
 
 export default class Header extends Component {
   render() {
     const links = []
-    if (myApp.username === 'admin') {
+    if (this.props.user.username === 'admin') {
       links.push(<li className='nav-item'><a className='nav-link' href="#" onClick={() => this.props.goto('dashboard')}>Standings</a></li>)
       links.push(<li className='nav-item'><a className='nav-link' href="#" onClick={() => this.props.goto('bracket')}>Bracket</a></li>)
       links.push(<li className='nav-item'><a className='nav-link' href="#" onClick={() => this.props.goto('setup')}>Setup</a></li>)
@@ -18,8 +17,8 @@ export default class Header extends Component {
             {links}
           </ul>
           <ul className="navbar-nav ml-auto">
-            <li className='nav-item'><span className='nav-link'>Welcome, {this.props.myApp.username}!</span></li>
-            <li className='nav-item'><a className='nav-link' href="#" onClick={() => this.props.goto('login')}>Logout</a></li>
+            <li className='nav-item'><span className='nav-link'>Welcome, {this.props.user.username}!</span></li>
+            <li className='nav-item'><a className='nav-link' href="#" onClick={() => this.props.handleLogout()}>Logout</a></li>
           </ul>
         </div>
         <div id="ballWrapper" style={{zIndex: 99}}>

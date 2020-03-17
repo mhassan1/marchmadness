@@ -4,7 +4,7 @@ import { render } from 'react-dom'
 export default class Cell extends Component {
 
   render() {
-    if (this.props.fixed) {
+    if (this.props.fixed !== null && this.props.fixed !== '') {
       if (this.props.fixed == 0 && this.props.fillable) {
         return (
           <td style={{borderBottom:'1px solid black', ...this.props.style}}>

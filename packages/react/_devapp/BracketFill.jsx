@@ -3,7 +3,6 @@ import { render, componentDidMount, componentWillUnmount } from 'react-dom'
 import Bracket from './Bracket'
 import axios from 'axios'
 import { onSuccess, onFailure } from './alerts'
-import myApp from 'myApp'
 
 export default class BracketFill extends Component {
   constructor() {
@@ -20,7 +19,7 @@ export default class BracketFill extends Component {
   }
 
   componentDidMount() {
-    this._asyncRequest = axios.get(__API_HOST__ + 'bracket').then(
+    this._asyncRequest = axios.get(API_URL + '/bracket').then(
       ({data: bracket}) => {
         this._asyncRequest = null
         this.bracket = bracket
@@ -79,9 +78,13 @@ export default class BracketFill extends Component {
 
   handleSubmit(event) {
     event.preventDefault()
-    const data = new FormData(event.target)
+    const formData = new FormData(event.target)
+    const data = {}
+    formData.forEach((value, key) => {
+      data[key] = value
+    })
     if (this.submitClicked) {
-      data.set('submit', '1')
+      data.submit = true
       this.submitClicked = false
 
       // validate
@@ -101,10 +104,10 @@ export default class BracketFill extends Component {
       }
     }
 
-    axios.post(__API_HOST__ + 'bracket/submit', data)
+    axios.put(API_URL + '/bracket', data)
       .then(onSuccess, onFailure)
       .then(() => {
-        if (data.get('submit')) {
+        if (data.submit) {
           window.location.reload()
         }
       })
@@ -118,7 +121,7 @@ export default class BracketFill extends Component {
     } else {
       const buttons = []
       buttons.push(<input style={{marginLeft:'200px'}} type="submit" name="save" value="Save"/>)
-      if (myApp.username !== 'admin') {
+      if (this.props.user.username !== 'admin') {
         buttons.push(<input type="submit" name="submit" value="Submit" onClick={this.submitButton}/>)
       }
       return (

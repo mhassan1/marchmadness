@@ -76,7 +76,6 @@ let config = {
 		new ExtractTextPlugin(path.join('..', 'css', 'app.css')),
 		new webpack.DefinePlugin({
 			'__DEV__' : JSON.stringify(true),
-			'__API_HOST__' : JSON.stringify('/index.php/'),
 		}),
 	],
 
