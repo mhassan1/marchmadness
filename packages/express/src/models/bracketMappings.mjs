@@ -384,16 +384,26 @@ export const getBracketMappingsWithTeams = async () => {
   )
   return bracketMappings.map(mapping => {
     const team = teamsByBracketId[mapping.bracket_id]
-    if (!team) return mapping
+    if (!team) return {
+      ...mapping,
+      team_name: mapping.label
+    }
     const { team_id, fixed, hier, seed } = team
     const team_name = teamsLookup[team_id]
     return {
       ...mapping,
       team_id,
-      team_name: team_name ? `${mapping.seed} ${team_name}` : mapping.label,
+      team_name: team_name ? `${seed || mapping.seed} ${team_name}` : mapping.label,
       fixed: fixed ?? mapping.fixed,
-      hier: hier ?? mapping.hier,
-      seed: seed ?? mapping.seed
+      hier: hier || mapping.hier,
+      seed: seed || mapping.seed
     }
   })
+}
+
+export const getBracketMappingsWithTeamsLookup = async () => {
+  const bracketMappings = await getBracketMappingsWithTeams()
+  return Object.fromEntries(
+    bracketMappings.map(mapping => [mapping.bracket_id, mapping])
+  )
 }

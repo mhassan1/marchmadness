@@ -35,10 +35,9 @@ router.use((req, res, next) => {
 router.get('/bracket', async (req, res, next) => {
   try {
     if (req.session.user.submitted) {
-
-    } else {
-      res.json({ bracket: await getFillInBracket(req.session.user.username) })
+      throw new Error('invalid request once submitted')
     }
+    res.json({ bracket: await getFillInBracket(req.session.user.username) })
   } catch (err) {
     next(err)
   }
@@ -72,7 +71,10 @@ router.get('/dashboard', async (req, res, next) => {
   }
 })
 
-// TODO security
+router.use((req, res, next) => {
+  if (req.session.user.username !== 'admin') return next(new Error('admin only'))
+  next()
+})
 
 router.get('/setup', async (req, res, next) => {
   try {
