@@ -6,6 +6,7 @@ const {
 const { teams } = require('../models/team')
 const { validateLogin, getAllSubmitted } = require('../models/user')
 const { getStandings } = require('../models/standings')
+const { msnbcUpdate } = require('../msnbcUpdate')
 
 const router = new express.Router()
 
@@ -93,6 +94,14 @@ router.post('/setup', async (req, res, next) => {
   try {
     await putSetupBracket(req.body)
     res.status(204).json({})
+  } catch (err) {
+    next(err)
+  }
+})
+
+router.get('/msnbcUpdate', async (req, res, next) => {
+  try {
+    res.json(await msnbcUpdate())
   } catch (err) {
     next(err)
   }

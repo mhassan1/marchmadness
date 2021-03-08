@@ -76,3 +76,5 @@ functions:
     handler: lambda.handler
     events:
       - httpApi: '*'
+      - schedule:
+          rate: rate(15 minutes)

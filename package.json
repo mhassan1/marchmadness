@@ -5,7 +5,7 @@
     "packages/*"
   ],
   "scripts": {
-    "putUser": "node -r dotenv/config putUser.js"
+    "putUser": "node -r dotenv/config scripts/putUser.js"
   },
   "dependencies": {
     "@vendia/serverless-express": "^4.3.4"
