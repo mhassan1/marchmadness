@@ -1,8 +1,10 @@
+.idea
 node_modules
-error_log
-_update.sql
 
 .env
+
+.serverless
+yarn-error.log
 
 .yarn/*
 !.yarn/patches

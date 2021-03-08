@@ -9,7 +9,7 @@
 </head>
 <script type="text/javascript">
   var STATIC_URL = 'http://localhost';
-  var API_URL = 'http://' + location.hostname + ':3001/api'
+  var API_URL = location.hostname === 'localhost' ? 'http://localhost:3001/api' : '/api'
 </script>
 <body>
   <div id="app"></div>
