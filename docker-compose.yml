@@ -31,6 +31,8 @@ services:
       MYSQL_USER: admin
       MYSQL_PASSWORD: r@nd0m
     restart: unless-stopped
+    ports:
+      - "3306:3306"
 
 volumes:
   mysql:

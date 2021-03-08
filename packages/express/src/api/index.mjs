@@ -3,7 +3,7 @@ import {
   getFillInBracket, putFillInBracket, getSetupBracket,
   putSetupBracket, markUserSubmitted, getAllBrackets
 } from '../models/bracket.mjs'
-import { getTeams } from '../models/team.mjs'
+import { teams } from '../models/team.mjs'
 import { validateLogin, getAllSubmitted } from '../models/user.mjs'
 import { getStandings } from '../models/standings.mjs'
 
@@ -78,7 +78,7 @@ router.get('/setup', async (req, res, next) => {
   try {
     res.json({
       bracket: await getSetupBracket(),
-      teams: await getTeams()
+      teams
     })
   } catch (err) {
     next(err)

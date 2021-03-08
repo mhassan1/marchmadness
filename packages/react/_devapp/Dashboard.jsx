@@ -25,7 +25,7 @@ export default class Dashboard extends Component {
   }
 
   componentWillUnmount() {
-    if (this._asyncRequest) {
+    if (this._asyncRequest?.cancel) {
       this._asyncRequest.cancel()
     }
   }

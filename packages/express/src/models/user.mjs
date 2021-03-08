@@ -1,15 +1,19 @@
-
+import { dynamoDBClient } from '../dynamodb.mjs'
 import knex from '../knex.mjs'
 import { createHash } from 'crypto'
 
 export const validateLogin = async (username, password) => {
-  const rows = await knex
-    .select('username', 'submitted')
-    .from('madness_users')
-    .where('username', '=', username)
-    .andWhere('password', '=', createHash('md5').update(password).digest('hex'))
-  if (!rows.length) throw new Error('Invalid username/password')
-  return rows[0]
+  const { Item } = await dynamoDBClient.get({
+    TableName: 'madness_users',
+    Key: {
+      username
+    },
+    AttributesToGet: ['username', 'password']
+  }).promise()
+  if (Item.password !== createHash('md5').update(password).digest('hex')) {
+    throw new Error('Invalid username/password')
+  }
+  return Item
 }
 
 export const getAllSubmitted = async () => {

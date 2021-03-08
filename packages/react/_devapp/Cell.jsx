@@ -34,9 +34,9 @@ export default class Cell extends Component {
         for (const team of this.props.teams) {
           options.push(
             <option
-              id={team.msnbc_team_id}
-              value={team.msnbc_team_id}
-              selected={team.msnbc_team_id == this.props.team_id}
+              id={team.team_id}
+              value={team.team_id}
+              selected={team.team_id == this.props.team_id}
             >{team.team_name}</option>
           )
         }

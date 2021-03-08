@@ -21,7 +21,7 @@ PHP, CodeIgniter, React, MySQL
 9. Go to "Setup" at the top and set up bracket after Selection Sunday and before inviting users
 10. Add/update teams as needed to `database/update.sql`, and run `sh database/db_update.sh` (as above).
 Only teams with "team_name" specified will be available in Setup.
-Other teams can be found here (click on a team to see the "msnbc_team_id" in the URL): http://scores.nbcsports.com/cbk/teams.asp
+Other teams can be found here (click on a team to see the "team_id" in the URL): http://scores.nbcsports.com/cbk/teams.asp
 11. Add users to `database/update.sql`, and run `sh database/db_update.sh` (as above). Passwords should be inserted as MD5 hashes.
 
 ## Updating Picks

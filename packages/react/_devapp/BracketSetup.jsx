@@ -24,7 +24,7 @@ export default class BracketSetup extends Component {
   }
 
   componentWillUnmount() {
-    if (this._asyncRequest) {
+    if (this._asyncRequest?.cancel) {
       this._asyncRequest.cancel()
     }
   }
