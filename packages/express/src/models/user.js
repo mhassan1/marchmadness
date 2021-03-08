@@ -7,7 +7,7 @@ module.exports.validateLogin = async (username, password) => {
     Key: {
       username
     },
-    AttributesToGet: ['username', 'password']
+    ProjectionExpression: 'username, password'
   }).promise()
   if (Item.password !== createHash('md5').update(password).digest('hex')) {
     throw new Error('Invalid username/password')
@@ -16,18 +16,14 @@ module.exports.validateLogin = async (username, password) => {
 }
 
 module.exports.getAllSubmitted = async () => {
-  // const users = await knex
-  //   .select('username')
-  //   .from('madness_users')
-  //   .where('username', '!=', 'admin')
-  //   .andWhere('submitted', '=', 1)
-  //   .andWhere('active_in', '=', 1)
-  // return users.concat({ username: 'admin' })
-
-  // TODO submitted only
   const { Items: users } = await dynamoDBClient.scan({
     TableName: 'madness_users',
-    AttributesToGet: ['username']
+    ProjectionExpression: 'username',
+    FilterExpression: 'submitted = :submitted or username = :admin',
+    ExpressionAttributeValues: {
+      ':submitted': true,
+      ':admin': 'admin'
+    }
   }).promise()
 
   return users

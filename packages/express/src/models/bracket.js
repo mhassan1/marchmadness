@@ -84,9 +84,13 @@ module.exports.putFillInBracket = async (username, body) => {
 module.exports.getAllBracketsRaw = async () => _getAllBracketsRaw(await getBracketMappingsWithTeamsLookup())
 
 const _getAllBracketsRaw = async (bracketMappingsLookup) => {
-  // TODO only submitted
   const { Items: users } = await dynamoDBClient.scan({
-    TableName: 'madness_users'
+    TableName: 'madness_users',
+    FilterExpression: 'submitted = :submitted or username = :admin',
+    ExpressionAttributeValues: {
+      ':submitted': true,
+      ':admin': 'admin'
+    }
   }).promise()
 
   const { bracket: correctBracket } = users.find(({ username }) => username === 'admin') || {}
@@ -159,9 +163,14 @@ module.exports.getAllBrackets = async () => {
 }
 
 module.exports.markUserSubmitted = async (username) => {
-  // await knex('madness_users').update({
-  //   submitted: 1
-  // }).where('username', '=', username)
+  await dynamoDBClient.update({
+    TableName: 'madness_users',
+    Key: { username },
+    UpdateExpression: 'set submitted = :submitted',
+    ExpressionAttributeValues: {
+      ':submitted': true
+    }
+  }).promise()
 }
 
 const Bracket = (rows = []) => {
