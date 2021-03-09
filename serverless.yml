@@ -1,0 +1,80 @@
+service: marchmadness
+
+frameworkVersion: '2'
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  profile: marchmadness
+  memorySize: 512
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:BatchWriteItem
+        - dynamodb:DeleteItem
+      Resource:
+        - Fn::GetAtt:
+            - sessionsTable
+            - Arn
+        - Fn::GetAtt:
+            - mappingsTable
+            - Arn
+        - Fn::GetAtt:
+            - usersTable
+            - Arn
+
+package:
+  excludeDevDependencies: false
+  exclude:
+    - .idea/**
+    - .env
+    - .yarn/**
+
+resources:
+  Resources:
+    sessionsTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: madness_sessions
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+        BillingMode: PAY_PER_REQUEST
+    mappingsTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: madness_bracket_mappings
+        AttributeDefinitions:
+          - AttributeName: bracket_id
+            AttributeType: N
+        KeySchema:
+          - AttributeName: bracket_id
+            KeyType: HASH
+        BillingMode: PAY_PER_REQUEST
+    usersTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: madness_users
+        AttributeDefinitions:
+          - AttributeName: username
+            AttributeType: S
+        KeySchema:
+          - AttributeName: username
+            KeyType: HASH
+        BillingMode: PAY_PER_REQUEST
+
+functions:
+  marchmadness:
+    handler: lambda.handler
+    events:
+      - httpApi: '*'
+      - schedule:
+          rate: rate(15 minutes)
