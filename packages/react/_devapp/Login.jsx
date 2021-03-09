@@ -16,11 +16,24 @@ export default class Login extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit.bind(this)}>
-        <input name="username" ref="username"/>
-        <input name="password" type="password" ref="password"/>
-        <input type="submit" value="Log In"/>
-      </form>
+      <div style={{margin: '10% auto'}} className="col-md-3">
+        <h1>March Madness</h1>
+        <form onSubmit={this.handleSubmit.bind(this)}>
+          <table className="login">
+            <tr>
+              <td>Username</td>
+              <td><input name="username" ref="username"/></td>
+            </tr>
+            <tr>
+              <td>Password</td>
+              <td><input name="password" type="password" ref="password"/></td>
+            </tr>
+            <tr>
+              <td><input type="submit" value="Log In"/></td>
+            </tr>
+          </table>
+        </form>
+      </div>
     )
   }
 }
