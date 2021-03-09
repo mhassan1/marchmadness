@@ -1,7 +1,11 @@
 const express = require('express')
 const {
-  getFillInBracket, putFillInBracket, getSetupBracket,
-  putSetupBracket, markUserSubmitted, getAllBrackets
+  getFillInBracket,
+  putFillInBracket,
+  getSetupBracket,
+  putSetupBracket,
+  markUserSubmitted,
+  getAllBrackets,
 } = require('../models/bracket')
 const { teams } = require('../models/team')
 const { validateLogin, getAllSubmitted } = require('../models/user')
@@ -67,7 +71,7 @@ router.get('/dashboard', async (req, res, next) => {
     res.json({
       brackets: await getAllBrackets(),
       users: await getAllSubmitted(),
-      standings: await getStandings()
+      standings: await getStandings(),
     })
   } catch (err) {
     next(err)
@@ -75,7 +79,8 @@ router.get('/dashboard', async (req, res, next) => {
 })
 
 router.use((req, res, next) => {
-  if (req.session.user.username !== 'admin') return next(new Error('admin only'))
+  if (req.session.user.username !== 'admin')
+    return next(new Error('admin only'))
   next()
 })
 
@@ -83,7 +88,7 @@ router.get('/setup', async (req, res, next) => {
   try {
     res.json({
       bracket: await getSetupBracket(),
-      teams
+      teams,
     })
   } catch (err) {
     next(err)

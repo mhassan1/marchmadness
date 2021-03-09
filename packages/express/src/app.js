@@ -9,7 +9,7 @@ const { msnbcUpdate } = require('./msnbcUpdate')
 
 const DynamoDbSessionStore = connectSessionDynamoDb({ session })
 const store = new DynamoDbSessionStore({
-  table: 'madness_sessions'
+  table: 'madness_sessions',
 })
 const app = express()
 
@@ -27,19 +27,23 @@ app.use(async (req, res, next) => {
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
-app.use(cors({
-  origin: 'http://localhost:3000', // TODO this is needed for local development only
-  credentials: true
-}))
-app.use(session({
-  secret: 'thisIsAVerySecretSecret',
-  resave: false,
-  saveUninitialized: true,
-  store,
-  cookie: {
-    maxAge: 60 * 24 * 60 * 60 * 1000 // 60 days
-  }
-}))
+app.use(
+  cors({
+    origin: 'http://localhost:3000', // TODO this is needed for local development only
+    credentials: true,
+  })
+)
+app.use(
+  session({
+    secret: 'thisIsAVerySecretSecret',
+    resave: false,
+    saveUninitialized: true,
+    store,
+    cookie: {
+      maxAge: 60 * 24 * 60 * 60 * 1000, // 60 days
+    },
+  })
+)
 app.use('/api', api)
 
 module.exports = app

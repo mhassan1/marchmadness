@@ -24,26 +24,26 @@ class Myapp extends Component {
   state = {
     view: null,
     user: null,
-    userInfoReceived: false
+    userInfoReceived: false,
   }
 
   goto(view) {
-    this.setState({view})
+    this.setState({ view })
   }
 
   handleLogin(user) {
-    this.setState({user})
+    this.setState({ user })
   }
 
   handleLogout() {
     axios.post(API_URL + '/logout').then(() => {
-      this.setState({user: null})
+      this.setState({ user: null })
     })
   }
 
   componentWillMount() {
-    axios.get(API_URL + '/me').then(resp => {
-      this.setState({user: resp.data, userInfoReceived: true})
+    axios.get(API_URL + '/me').then((resp) => {
+      this.setState({ user: resp.data, userInfoReceived: true })
     })
   }
 
@@ -64,36 +64,46 @@ class Myapp extends Component {
       case 'dashboard':
         return (
           <Fragment>
-            <Header goto={this.goto} user={this.state.user} handleLogout={this.handleLogout}/>
-            <Dashboard/>
+            <Header
+              goto={this.goto}
+              user={this.state.user}
+              handleLogout={this.handleLogout}
+            />
+            <Dashboard />
           </Fragment>
         )
       case 'bracket':
         return (
           <Fragment>
-            <Header goto={this.goto} user={this.state.user} handleLogout={this.handleLogout}/>
-            <div className='container-fluid'>
-              <BracketFill user={this.state.user}/>
+            <Header
+              goto={this.goto}
+              user={this.state.user}
+              handleLogout={this.handleLogout}
+            />
+            <div className="container-fluid">
+              <BracketFill user={this.state.user} />
             </div>
           </Fragment>
         )
       case 'setup':
         return (
           <Fragment>
-            <Header goto={this.goto} user={this.state.user} handleLogout={this.handleLogout}/>
-            <div className='container-fluid'>
-              <BracketSetup/>
+            <Header
+              goto={this.goto}
+              user={this.state.user}
+              handleLogout={this.handleLogout}
+            />
+            <div className="container-fluid">
+              <BracketSetup />
             </div>
           </Fragment>
         )
       case 'login':
-        return (
-          <Login handleLogin={this.handleLogin}/>
-        )
+        return <Login handleLogin={this.handleLogin} />
       default:
         return null
     }
   }
 }
 
-render(<Myapp/>, document.getElementById('app'))
+render(<Myapp />, document.getElementById('app'))
