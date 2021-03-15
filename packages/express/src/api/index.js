@@ -26,9 +26,8 @@ router.post('/login', async (req, res, next) => {
 })
 
 router.post('/logout', (req, res, next) => {
-  delete req.session.user
-  res.status(204).json({})
-})
+  req.session ? req.session.destroy(next) : next()
+}, (req, res) => res.status(204).json({}))
 
 router.get('/me', (req, res, next) => {
   res.json(req.session.user)
