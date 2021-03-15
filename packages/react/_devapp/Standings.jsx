@@ -34,7 +34,8 @@ export default class Standings extends Component {
                 <td>
                   {standing.username === 'admin'
                     ? 'Correct'
-                    : standing.username}
+                    : standing.username[0].toUpperCase() +
+                      standing.username.slice(1)}
                 </td>
                 <td>{standing.points}</td>
                 <td>{standing.potential}</td>

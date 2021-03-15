@@ -6,12 +6,12 @@ module.exports.validateLogin = async (username, password) => {
     .get({
       TableName: 'madness_users',
       Key: {
-        username,
+        username: username.toLowerCase(),
       },
       ProjectionExpression: 'username, password',
     })
     .promise()
-  if (Item.password !== createHash('md5').update(password).digest('hex')) {
+  if (Item.password !== createHash('sha256').update(password).digest('hex')) {
     throw new Error('Invalid username/password')
   }
   return Item

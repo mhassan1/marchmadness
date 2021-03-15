@@ -4,6 +4,7 @@
 node_modules
 
 .env
+putUsers.bash
 
 .serverless
 yarn-error.log

@@ -53,7 +53,10 @@ export default class Header extends Component {
           <ul className="navbar-nav ml-auto">
             <li className="nav-item">
               <span className="nav-link">
-                Welcome, {this.props.user.username}!
+                Welcome,{' '}
+                {this.props.user.username[0].toUpperCase() +
+                  this.props.user.username.slice(1)}
+                !
               </span>
             </li>
             <li className="nav-item">

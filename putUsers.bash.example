@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+yarn putUser test-user test-password
