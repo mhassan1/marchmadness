@@ -1,15 +1,15 @@
 const { dynamoDBClient } = require('../dynamodb')
 const { teamsLookup } = require('./team')
 
-const ROUND2DATE = 'March 15 - 16'
-const ROUND3DATE = 'March 17 - 18'
-const SWEET16DATE = 'March 22 - 23'
-const ELITE8DATE = 'March 24 - 25'
-const FINAL4DATE = 'March 31'
-const FINALSDATE = 'April 2'
-const TOPLEFT = 'SOUTH'
-const TOPRIGHT = 'EAST'
-const BOTTOMLEFT = 'WEST'
+const ROUND2DATE = 'March 19 - 20'
+const ROUND3DATE = 'March 21 - 22'
+const SWEET16DATE = 'March 27 - 28'
+const ELITE8DATE = 'March 29 - 30'
+const FINAL4DATE = 'April 3'
+const FINALSDATE = 'April 5'
+const TOPLEFT = 'WEST'
+const TOPRIGHT = 'SOUTH'
+const BOTTOMLEFT = 'EAST'
 const BOTTOMRIGHT = 'MIDWEST'
 
 const bracketMappings = (module.exports.bracketMappings = [
