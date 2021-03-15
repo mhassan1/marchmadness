@@ -8,7 +8,7 @@ module.exports.validateLogin = async (username, password) => {
       Key: {
         username: username.toLowerCase(),
       },
-      ProjectionExpression: 'username, password',
+      ProjectionExpression: 'username, password, submitted',
     })
     .promise()
   if (Item.password !== createHash('sha256').update(password).digest('hex')) {
