@@ -331,6 +331,9 @@ const teams = (module.exports.teams = [
   [1455, 'N Dakota St'],
   [1506, 'N Kentucky'],
   [36, 'Abilene Chr'],
+  [237, 'Grand Canyon'],
+  [649, 'Winthrop'],
+  [1052, 'Norfolk St'],
 ].map(([team_id, team_name]) => ({ team_id, team_name })))
 
 module.exports.teamsLookup = teams.reduce((acc, { team_id, team_name }) => {
