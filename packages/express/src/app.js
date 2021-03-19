@@ -4,26 +4,12 @@ const session = require('express-session')
 const bodyParser = require('body-parser')
 const connectSessionDynamoDb = require('connect-dynamodb')
 const api = require('./api')
-const { getCurrentInvoke } = require('@vendia/serverless-express')
-const { msnbcUpdate } = require('./msnbcUpdate')
 
 const DynamoDbSessionStore = connectSessionDynamoDb({ session })
 const store = new DynamoDbSessionStore({
   table: 'madness_sessions',
 })
 const app = express()
-
-app.use(async (req, res, next) => {
-  try {
-    const { event } = getCurrentInvoke()
-    if (event?.source === 'aws.events') {
-      return res.json(await msnbcUpdate())
-    }
-    next()
-  } catch (err) {
-    next(err)
-  }
-})
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
