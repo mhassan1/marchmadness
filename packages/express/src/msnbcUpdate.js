@@ -44,7 +44,7 @@ module.exports.msnbcUpdate = async () => {
         )
       )
       if (!match) continue
-      const [team1Id, team1Score, team2Id, team2Score] = match
+      const [, team1Id, team1Score, team2Id, team2Score] = match
 
       const team1Hier = bracketMappingsByTeam[team1Id]?.hier
       const team2Hier = bracketMappingsByTeam[team2Id]?.hier
@@ -61,7 +61,7 @@ module.exports.msnbcUpdate = async () => {
 
       if (!gameHier) continue
 
-      const gameBracketId = bracketMappingsByHier[gameHier]
+      const gameBracketId = bracketMappingsByHier[gameHier]?.bracket_id
       const { bracket_id: pick } =
         Number(team1Score) > Number(team2Score)
           ? bracketMappingsByTeam[team1Id]
