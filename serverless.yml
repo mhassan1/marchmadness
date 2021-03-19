@@ -2,6 +2,8 @@ service: marchmadness
 
 frameworkVersion: '2'
 
+# TODO add support for stages
+
 provider:
   name: aws
   runtime: nodejs14.x
