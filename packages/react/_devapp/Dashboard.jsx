@@ -62,9 +62,9 @@ export default class Dashboard extends Component {
                 Click on a user below to see their picks, or click on "Correct"
                 to see the winning picks, so far. Correct picks are
                 automatically updated every 15 mins.
-                <br />
-                (Last Update:{' '}
-                {new Date(this.state.standings.lastupdate).toLocaleString()})
+                {/*<br />*/}
+                {/*(Last Update:{' '}*/}
+                {/*{new Date(this.state.standings.lastupdate).toLocaleString()})*/}
               </p>
               <Standings
                 selectedUser={this.state.selectedUser}
