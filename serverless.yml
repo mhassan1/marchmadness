@@ -4,6 +4,12 @@ frameworkVersion: '2'
 
 # TODO add support for stages
 
+plugins:
+  - serverless-hooks
+
+custom:
+  serverless-hooks: {}
+
 provider:
   name: aws
   runtime: nodejs14.x
