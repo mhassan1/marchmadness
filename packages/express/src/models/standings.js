@@ -1,3 +1,4 @@
+const { default: MultiSort } = require('multi-sort')
 const { getAllBracketsRaw } = require('./bracket')
 
 module.exports.getStandings = async () => {
@@ -9,28 +10,18 @@ module.exports.getStandings = async () => {
   for (const v of standings) {
     v.winFrequency = v.username === 'admin' ? 0 : winFrequency[v.username]
   }
-  const sorts = {
-    admin: [],
-    winFrequency: [],
-    points: [],
-    potential: [],
-    username: [],
-  }
-  for (const v of standings) {
-    sorts.admin.push(v.username === 'admin')
-    sorts.winFrequency.push(v.winFrequency)
-    sorts.points.push(v.points)
-    sorts.potential.push(v.potential)
-    sorts.username.push(v.username)
-  }
 
-  // TODO multisort
-
-  return standings
+  return MultiSort(standings, {
+    admin: 'ASC',
+    winFrequency: 'DESC',
+    points: 'DESC',
+    potential: 'DESC',
+    username: 'ASC',
+  })
 }
 
 const _getStandings = (allBrackets) => {
-  return Object.entries(allBrackets).map(([username, rows]) => {
+  const standings = Object.entries(allBrackets).map(([username, rows]) => {
     let points = 0
     let potential = 0
     for (const row of rows) {
@@ -44,6 +35,13 @@ const _getStandings = (allBrackets) => {
     const { team_name: finalpick, format3: finalpickformat3 } =
       rows.find(({ bracket_id }) => bracket_id === 127) || {}
     return { username, points, potential, finalpick, finalpickformat3 }
+  })
+
+  return MultiSort(standings, {
+    admin: 'ASC',
+    points: 'DESC',
+    potential: 'DESC',
+    username: 'ASC',
   })
 }
 
