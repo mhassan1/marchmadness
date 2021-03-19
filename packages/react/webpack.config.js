@@ -99,4 +99,6 @@ if (process.env.NODE_ENV === 'production') {
 
 module.exports = config
 
-require('./src/static').listen(3000)
+if (process.env.NODE_ENV === 'development') {
+  require('./src/static').listen(3000)
+}
