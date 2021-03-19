@@ -20,6 +20,8 @@ Express, React, Lambda, DynamoDB
 
 Picks are automatically updated every 15 minutes by a CloudWatch Event.
 
+To manually update picks, run `yarn updateCorrectPicks`
+
 ## Development
 
 1. Do an initial `yarn sls deploy` so that DynamoDB tables are created

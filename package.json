@@ -6,7 +6,8 @@
   ],
   "scripts": {
     "format": "prettier --write **/*.js **/*.jsx",
-    "putUser": "node -r dotenv/config scripts/putUser.js"
+    "putUser": "node -r dotenv/config scripts/putUser.js",
+    "updateCorrectPicks": "node -r dotenv/config scripts/updateCorrectPicks.js"
   },
   "dependencies": {
     "@vendia/serverless-express": "^4.3.4"
