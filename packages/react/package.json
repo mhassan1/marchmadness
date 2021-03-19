@@ -2,8 +2,8 @@
   "name": "marchmadness-react",
   "version": "0.0.0",
   "scripts": {
-    "build": "webpack --progress --env.NODE_ENV=production --mode production",
-    "watch": "webpack  --colors --debug --display-chunk -w --env.NODE_ENV=development --mode development",
+    "build": "NODE_ENV=production webpack --progress --mode production",
+    "watch": "NODE_ENV=development webpack --colors --debug --display-chunk -w --mode development",
     "start": "yarn watch"
   },
   "dependencies": {
