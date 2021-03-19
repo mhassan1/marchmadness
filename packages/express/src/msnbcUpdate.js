@@ -77,7 +77,8 @@ module.exports.msnbcUpdate = async () => {
           pick,
         })
       } else {
-        adminBracket[adminBracketItemIndex].pick = pick
+        // TODO why does pick need to be a string?
+        adminBracket[adminBracketItemIndex].pick = String(pick)
       }
     }
   }
