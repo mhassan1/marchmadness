@@ -1,8 +1,8 @@
 const { dynamoDBClient } = require('../dynamodb')
 const { teamsLookup } = require('./team')
 
-const ROUND2DATE = 'March 19 - 20'
-const ROUND3DATE = 'March 21 - 22'
+const ROUND1DATE = 'March 19 - 20'
+const ROUND2DATE = 'March 21 - 22'
 const SWEET16DATE = 'March 27 - 28'
 const ELITE8DATE = 'March 29 - 30'
 const FINAL4DATE = 'April 3'
@@ -692,10 +692,10 @@ const bracketMappings = (module.exports.bracketMappings = [
     '',
     null,
     null,
-    'Round 3',
+    'Round 2',
     null,
   ],
-  [333, 1, 2, '{"textAlign":"center"}', '', null, null, ROUND2DATE, null],
+  [333, 1, 2, '{"textAlign":"center"}', '', null, null, ROUND1DATE, null],
   [
     332,
     1,
@@ -704,7 +704,7 @@ const bracketMappings = (module.exports.bracketMappings = [
     '',
     null,
     null,
-    'Round 2',
+    'Round 1',
     null,
   ],
   [
@@ -715,7 +715,7 @@ const bracketMappings = (module.exports.bracketMappings = [
     '',
     null,
     null,
-    'Round 2',
+    'Round 1',
     null,
   ],
   [341, 5, 2, '{"textAlign":"center"}', '', null, null, FINAL4DATE, null],
@@ -754,7 +754,7 @@ const bracketMappings = (module.exports.bracketMappings = [
     'Sweet 16',
     null,
   ],
-  [335, 2, 2, '{"textAlign":"center"}', '', null, null, ROUND3DATE, null],
+  [335, 2, 2, '{"textAlign":"center"}', '', null, null, ROUND2DATE, null],
   [
     352,
     6,
@@ -802,7 +802,7 @@ const bracketMappings = (module.exports.bracketMappings = [
     'Sweet 16',
     null,
   ],
-  [345, 10, 2, '{"textAlign":"center"}', '', null, null, ROUND3DATE, null],
+  [345, 10, 2, '{"textAlign":"center"}', '', null, null, ROUND2DATE, null],
   [
     344,
     10,
@@ -811,10 +811,10 @@ const bracketMappings = (module.exports.bracketMappings = [
     '',
     null,
     null,
-    'Round 3',
+    'Round 2',
     null,
   ],
-  [343, 11, 2, '{"textAlign":"center"}', '', null, null, ROUND2DATE, null],
+  [343, 11, 2, '{"textAlign":"center"}', '', null, null, ROUND1DATE, null],
   [353, 6, 31, '{"textAlign":"center"}', '', null, null, FINALSDATE, null],
   [
     357,

@@ -54,8 +54,8 @@ export default class Dashboard extends Component {
               </p>
 
               <p>
-                Correct Round 1 picks are worth 40 points, Round 2 picks are
-                worth 80 points, Round 3 picks are worth 160 points, etc.
+                Correct Round 1 picks are worth 80 points, Round 2 picks are
+                worth 160 points, Sweet 16 picks are worth 320 points, etc.
               </p>
 
               <p>
