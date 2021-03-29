@@ -41,7 +41,7 @@ export default class Standings extends Component {
                 <td>{standing.potential}</td>
                 <td>
                   {standing.username !== 'admin'
-                    ? standing.winFrequency
+                    ? 'winFrequency' in standing
                       ? standing.winFrequency + '%'
                       : 'N/A'
                     : ''}

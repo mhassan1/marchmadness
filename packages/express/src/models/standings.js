@@ -4,11 +4,11 @@ const { getAllBracketsRaw } = require('./bracket')
 module.exports.getStandings = async () => {
   const allBrackets = await getAllBracketsRaw()
   const standings = _getStandings(allBrackets)
-  const winFrequency = await _getWinFrequency(allBrackets)
+  const winFrequency = _getWinFrequency(allBrackets)
   if (!winFrequency) return standings
 
   for (const v of standings) {
-    v.winFrequency = v.username === 'admin' ? 0 : winFrequency[v.username]
+    v.winFrequency = winFrequency[v.username] || 0
   }
 
   return MultiSort(standings, {
@@ -34,7 +34,7 @@ const _getStandings = (allBrackets) => {
     }
     const { team_name: finalpick, format3: finalpickformat3 } =
       rows.find(({ bracket_id }) => bracket_id === 127) || {}
-    return { username, points, potential, finalpick, finalpickformat3 }
+    return { admin: username === 'admin' ? 0 : 1, username, points, potential, finalpick, finalpickformat3 }
   })
 
   return MultiSort(standings, {
@@ -57,7 +57,7 @@ const score = (allPicks, username, sim) => {
   return score
 }
 
-const _getWinFrequency = async (allPicks) => {
+const _getWinFrequency = (allPicks) => {
   const adminPicks = allPicks.admin
   const usernames = Object.keys(allPicks)
   const winCounts = {}
@@ -66,7 +66,7 @@ const _getWinFrequency = async (allPicks) => {
     hierLookup[v.hier] = v.mypick
   }
 
-  const remainingGamesCount = adminPicks.filter((p) => !p.fixed).length
+  const remainingGamesCount = adminPicks.filter((p) => !p.team_name).length
   if (remainingGamesCount > 7) {
     // not at Elite 8 yet, too many games left
     return
@@ -77,7 +77,7 @@ const _getWinFrequency = async (allPicks) => {
     const sim = []
     let k = 0
     for (const v of adminPicks) {
-      if (v.fixed) {
+      if (v.team_name) {
         sim.push(v.rightpick)
         continue
       }
@@ -93,12 +93,10 @@ const _getWinFrequency = async (allPicks) => {
       if (username === 'admin') continue
       scores[username] = score(allPicks, username, sim)
     }
-    const maxScore = Math.max(...Object.entries(scores))
-    const winners = scores.length
-      ? Object.entries(scores)
-          .filter(([u, s]) => s === maxScore)
-          .map(([u]) => u)
-      : []
+    const maxScore = Math.max(...Object.values(scores))
+    const winners = Object.entries(scores)
+      .filter(([u, s]) => s === maxScore)
+      .map(([u]) => u)
     for (const username of winners) {
       winCounts[username] =
         (username in winCounts ? winCounts[username] : 0) + 1 / winners.length
