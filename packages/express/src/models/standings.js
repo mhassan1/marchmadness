@@ -51,7 +51,7 @@ const score = (allPicks, username, sim) => {
   let score = 0
   for (let i = 0; i < bracket.length; i++) {
     if (bracket[i].mypick === sim[i]) {
-      score += 40 * 2 ** bracket[i].round - 1
+      score += 40 * 2 ** (bracket[i].round - 1)
     }
   }
   return score
