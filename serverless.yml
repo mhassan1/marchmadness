@@ -1,8 +1,6 @@
 service: marchmadness
 
-frameworkVersion: '2'
-
-# TODO add support for stages
+frameworkVersion: '3'
 
 plugins:
   - serverless-hooks
@@ -37,9 +35,9 @@ provider:
             - Arn
 
 package:
-  excludeDevDependencies: false
   exclude:
     - .idea/**
+    - .vscode/**
     - .env
     - .yarn/**
 
@@ -48,7 +46,7 @@ resources:
     sessionsTable:
       Type: AWS::DynamoDB::Table
       Properties:
-        TableName: madness_sessions
+        TableName: madness_sessions_${opt:stage}
         AttributeDefinitions:
           - AttributeName: id
             AttributeType: S
@@ -59,7 +57,7 @@ resources:
     mappingsTable:
       Type: AWS::DynamoDB::Table
       Properties:
-        TableName: madness_bracket_mappings
+        TableName: madness_bracket_mappings_${opt:stage}
         AttributeDefinitions:
           - AttributeName: bracket_id
             AttributeType: N
@@ -70,7 +68,7 @@ resources:
     usersTable:
       Type: AWS::DynamoDB::Table
       Properties:
-        TableName: madness_users
+        TableName: madness_users_${opt:stage}
         AttributeDefinitions:
           - AttributeName: username
             AttributeType: S
@@ -82,6 +80,8 @@ resources:
 functions:
   marchmadness:
     handler: lambda.handler
+    environment:
+      STAGE: ${opt:stage}
     events:
       - httpApi: '*'
       - schedule:

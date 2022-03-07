@@ -1,25 +1,23 @@
-'use strict'
+/* eslint-env node */
+/* eslint-disable @typescript-eslint/no-var-requires */
 
 const webpack = require('webpack')
 const path = require('path')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 let config = {
-  entry: {
-    main: ['./_devapp/app.js', './_devapp/css/app.scss'],
-  },
+  entry: './src/app.tsx',
   output: {
-    path: path.resolve(__dirname, 'assets', 'bundle'),
+    path: path.resolve(__dirname, 'build'),
     filename: '[name].bundle.js',
   },
   resolve: {
-    extensions: ['.js', '.jsx', '.json', '.ts', '.tsx'],
+    extensions: ['.ts', '.tsx', '.js'],
   },
   module: {
     rules: [
       {
-        test: /\.(js|jsx|tsx|ts)$/,
-        exclude: path.resolve(__dirname, 'node_modules'),
+        test: /\.tsx?$/,
         use: {
           loader: 'babel-loader',
           options: {
@@ -28,29 +26,20 @@ let config = {
               '@babel/preset-react',
               '@babel/preset-typescript',
             ],
-            plugins: [
-              ['@babel/plugin-proposal-decorators', { legacy: true }],
-              '@babel/plugin-syntax-dynamic-import',
-              ['@babel/plugin-proposal-class-properties', { loose: true }],
-            ],
           },
         },
       },
       {
         test: /\.scss$/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: [
-            {
-              loader: 'css-loader',
-            },
-            'postcss-loader',
-            'sass-loader',
-          ],
-        }),
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          'postcss-loader',
+          'sass-loader',
+        ],
       },
       {
-        test: /.(png|woff(2)?|eot|ttf|svg|gif)(\?[a-z0-9=\.]+)?$/,
+        test: /.(png|woff(2)?|eot|ttf|svg|gif)(\?[a-z0-9=.]+)?$/,
         use: [
           {
             loader: 'file-loader',
@@ -60,17 +49,10 @@ let config = {
           },
         ],
       },
-      {
-        test: /\.css$/,
-        use: ['style-loader', 'css-loader', 'postcss-loader'],
-      },
     ],
   },
-  externals: {
-    myApp: 'myApp',
-  },
   plugins: [
-    new ExtractTextPlugin(path.join('..', 'css', 'app.css')),
+    new MiniCssExtractPlugin(),
     new webpack.DefinePlugin({
       __DEV__: JSON.stringify(true),
     }),
@@ -80,5 +62,7 @@ let config = {
 module.exports = config
 
 if (process.env.NODE_ENV === 'development') {
-  require('./src/static').listen(3000)
+  const PORT = 3000
+  require('./src/static').listen(PORT)
+  console.log(`App is listening on port ${PORT}`)
 }

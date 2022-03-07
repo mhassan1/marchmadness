@@ -1,0 +1,92 @@
+@import '~bootstrap/scss/bootstrap';
+@import url('https://fonts.googleapis.com/css?family=Fjalla+One');
+@import './basketball';
+
+body {
+  padding-bottom: 20px;
+  font-family: 'Fjalla One', sans-serif;
+  color: black;
+}
+
+.navbar-brand {
+  font-size: 300%;
+  color: darkcyan;
+}
+
+.nav-link {
+  color: darkcyan;
+}
+
+.navbar-custom::after {
+  content: '';
+  background-image: url('https://www.duncanflooringspecialist.com/wp-content/uploads/2014/11/sports-_-entertainment-1.jpg');
+  background-size: contain;
+  opacity: 0.7;
+  height: 100px;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;
+}
+
+table.bracket {
+  background-color: #fafafa;
+  border: solid 1px #bbb;
+  margin: 0.3em auto;
+  padding: 0.4em 1em;
+  border-radius: 0.6em;
+  -moz-border-radius: 0.6em;
+  -webkit-border-radius: 0.6em;
+  border-spacing: 0px;
+  border-collapse: separate;
+}
+
+table.bracket td {
+  padding-left: 0.25em;
+  padding-right: 0.25em;
+  padding-bottom: 0em;
+  padding-top: 0em;
+  font-size: 12px;
+  height: 15px;
+  width: 110px;
+  max-width: 100px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+table.bracket td select {
+  padding-left: 0em;
+  padding-right: 0em;
+  padding-bottom: 0em;
+  padding-top: 0em;
+  border-color: transparent;
+  height: 19px;
+  width: 100%;
+}
+
+table.login td {
+  padding: 10px 30px;
+}
+
+table.login input {
+  border-color: orange;
+}
+
+@keyframes wiggle {
+  0% {
+    transform: rotate(20deg);
+  }
+  50% {
+    transform: rotate(-20deg);
+  }
+  100% {
+    transform: rotate(20deg);
+  }
+}
+
+.wiggle-container {
+  overflow: hidden !important;
+}

@@ -1,7 +1,10 @@
+/* eslint-env node */
+/* eslint-disable @typescript-eslint/no-var-requires */
+
 const serverlessExpress = require('@vendia/serverless-express')
-const app = require('./packages/express/src/app')
+const { app } = require('./packages/express/build/app')
 const frontend = require('./packages/react/src/static')
-const { msnbcUpdate } = require('./packages/express/src/msnbcUpdate')
+const { msnbcUpdate } = require('./packages/express/build/msnbcUpdate')
 
 app.use(frontend)
 const server = serverlessExpress({ app })
