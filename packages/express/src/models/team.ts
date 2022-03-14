@@ -334,6 +334,7 @@ export const teams = [
   [237, 'Grand Canyon'],
   [649, 'Winthrop'],
   [1052, 'Norfolk St'],
+  [1594, 'Bryant'],
 ].map(([team_id, team_name]) => ({ team_id, team_name })) as Array<{
   team_id: number
   team_name: string
