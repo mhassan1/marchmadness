@@ -1,4 +1,5 @@
 import { dynamoDBClient } from '../packages/express/src/dynamodb'
+import { MADNESS_USERS } from '../packages/express/src/constants'
 import { createHash } from 'crypto'
 
 const [, , username, password] = process.argv
@@ -10,7 +11,7 @@ const run = async () => {
   console.log(`Putting user ${username}...`)
   await dynamoDBClient
     .update({
-      TableName: `madness_users_${process.env.STAGE}`,
+      TableName: MADNESS_USERS,
       Key: { username: username.toLowerCase() },
       UpdateExpression: 'set password = :password',
       ExpressionAttributeValues: {
