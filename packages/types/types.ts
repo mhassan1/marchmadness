@@ -35,3 +35,10 @@ export type Standings = Array<{
   finalpick: string
   finalpickformat3: string
 }>
+
+export type Odds = Array<{
+  team1_id: number
+  team1_moneyline: number
+  team2_id: number
+  team2_moneyline: number
+}>

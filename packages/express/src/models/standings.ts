@@ -1,11 +1,17 @@
-import { Rows } from 'marchmadness-types'
+import { Rows, Odds } from 'marchmadness-types'
 import MultiSort from 'multi-sort'
 import { getAllBracketsRaw } from './bracket'
+import { dynamoDBClient } from '../dynamodb'
+import { MADNESS_ODDS } from '../constants'
 
 export const getStandings = async () => {
-  const allBrackets = await getAllBracketsRaw()
+  const { allBrackets, bracketMappings } = await getAllBracketsRaw()
   const standings = _getStandings(allBrackets)
-  const winFrequency = _getWinFrequency(allBrackets)
+  const winFrequency = _getWinFrequency(
+    allBrackets,
+    bracketMappings,
+    await getOdds()
+  )
   if (!winFrequency) return standings
 
   for (const v of standings) {
@@ -73,7 +79,11 @@ const score = (
   return score
 }
 
-const _getWinFrequency = (allPicks: Record<string, Rows>) => {
+const _getWinFrequency = (
+  allPicks: Record<string, Rows>,
+  bracketMappings: Record<number, Rows[number]>,
+  odds: Record<string, number>
+) => {
   const adminPicks = allPicks.admin
   const usernames = Object.keys(allPicks)
   const winCounts: Record<string, number> = {}
@@ -91,6 +101,7 @@ const _getWinFrequency = (allPicks: Record<string, Rows>) => {
   for (let i = 0; i < simCount; i++) {
     const hiers: Record<string, number | undefined> = {}
     const sim = []
+    let simWeight = 1
     let k = 0
     for (const v of adminPicks) {
       if (v.team_name) {
@@ -103,7 +114,24 @@ const _getWinFrequency = (allPicks: Record<string, Rows>) => {
       sim.push(pick)
       hiers[v.hier] = pick
       k++
+
+      const _otherHier = `${v.hier}.${3 - j}`
+      const otherPick =
+        _otherHier in hiers ? hiers[_otherHier] : hierLookup[_otherHier]
+      const team1_id = bracketMappings[pick as number]?.team_id
+      const team2_id = bracketMappings[otherPick as number]?.team_id
+      let weight
+      if (odds[`${team1_id}_${team2_id}`]) {
+        weight = odds[`${team1_id}_${team2_id}`]
+      } else if (odds[`${team2_id}_${team1_id}`]) {
+        weight = 1 - odds[`${team2_id}_${team1_id}`]
+      } else {
+        weight = 0.5
+      }
+
+      simWeight *= weight
     }
+
     const scores: Record<string, number> = {}
     for (const username of usernames) {
       if (username === 'admin') continue
@@ -115,7 +143,8 @@ const _getWinFrequency = (allPicks: Record<string, Rows>) => {
       .map(([u]) => u)
     for (const username of winners) {
       winCounts[username] =
-        (username in winCounts ? winCounts[username] : 0) + 1 / winners.length
+        (username in winCounts ? winCounts[username] : 0) +
+        (simCount * simWeight) / winners.length
     }
   }
 
@@ -127,3 +156,25 @@ const _getWinFrequency = (allPicks: Record<string, Rows>) => {
   }
   return winFrequency
 }
+
+const getOdds = async () => {
+  const {
+    Item: { odds },
+  } = (await dynamoDBClient
+    .get({
+      TableName: MADNESS_ODDS,
+      Key: { source: 'msnbc' },
+    })
+    .promise()) as unknown as { Item: { odds: Odds } }
+
+  return Object.fromEntries(
+    odds.map(({ team1_id, team1_moneyline, team2_id, team2_moneyline }) => {
+      const team1_prob = moneylineToProb(team1_moneyline)
+      const team2_prob = moneylineToProb(team2_moneyline)
+      return [`${team1_id}_${team2_id}`, team1_prob / (team1_prob + team2_prob)]
+    })
+  )
+}
+
+const moneylineToProb = (moneyline: number) =>
+  moneyline < 0 ? -moneyline / (-moneyline + 100) : 100 / (moneyline + 100)

@@ -93,8 +93,13 @@ export const putFillInBracket = async (username: string, body: number[]) => {
     .promise()
 }
 
-export const getAllBracketsRaw = async () =>
-  _getAllBracketsRaw(await getBracketMappingsWithTeamsLookup())
+export const getAllBracketsRaw = async () => {
+  const bracketMappings = await getBracketMappingsWithTeamsLookup()
+  return {
+    allBrackets: await _getAllBracketsRaw(bracketMappings),
+    bracketMappings,
+  }
+}
 
 const _getAllBracketsRaw = async (
   bracketMappingsLookup: Record<number, Rows[number]>

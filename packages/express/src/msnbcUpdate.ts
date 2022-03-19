@@ -1,4 +1,4 @@
-import { MADNESS_USERS } from './constants'
+import { MADNESS_USERS, MADNESS_ODDS } from './constants'
 
 import axios from 'axios'
 import { dynamoDBClient } from './dynamodb'
@@ -8,7 +8,12 @@ import { Rows } from 'marchmadness-types'
 const gameRegex = /[^>]+id="([^"]+)"[^>]*score="([^"]+)"/
 
 export const msnbcUpdate = async () => {
-  console.log('running MSNBC update')
+  await picksUpdate()
+  await oddsUpdate()
+}
+
+const picksUpdate = async () => {
+  console.log('updating picks')
 
   const bracketMappings = await getBracketMappingsWithTeams()
   const bracketMappingsByTeam = Object.fromEntries(
@@ -100,4 +105,49 @@ export const msnbcUpdate = async () => {
     .promise()
 
   return adminBracket
+}
+
+const oddsTeamRegex =
+  /<a href="\/cbk\/teamstats.asp\?team=(\d+)&.+?"shsNonMobile">(.+?)<[\s\S]+?"shsNumD"[\s\S]+?"shsNumD">(.*?)</
+const oddsRegex = new RegExp(
+  `"shsNamD shsAwayTeam">${oddsTeamRegex.source}[\\s\\S]+?"shsNamD shsHomeTeam">[\\s]+?at ${oddsTeamRegex.source}`,
+  'g'
+)
+
+export const oddsUpdate = async () => {
+  console.log('updating odds')
+  const { data: html } = await axios.get(
+    'https://scores.nbcsports.com/cbk/odds.asp'
+  )
+  const odds = [...html.matchAll(oddsRegex)]
+    .filter(([, , , team1_moneyline]) => team1_moneyline)
+    .map(
+      ([
+        ,
+        team1_id,
+        team1_name,
+        team1_moneyline,
+        team2_id,
+        team2_name,
+        team2_moneyline,
+      ]) => ({
+        team1_id: Number(team1_id),
+        team1_name,
+        team1_moneyline: Number(team1_moneyline),
+        team2_id: Number(team2_id),
+        team2_name,
+        team2_moneyline: Number(team2_moneyline),
+      })
+    )
+
+  await dynamoDBClient
+    .update({
+      TableName: MADNESS_ODDS,
+      Key: { source: 'msnbc' },
+      UpdateExpression: 'set odds = :odds',
+      ExpressionAttributeValues: {
+        ':odds': odds,
+      },
+    })
+    .promise()
 }

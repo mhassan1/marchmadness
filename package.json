@@ -14,8 +14,8 @@
     "postinstall": "husky install",
     "putUser:dev": "STAGE=dev ts-node -r dotenv/config scripts/putUser.ts",
     "putUser:prod": "STAGE=prod ts-node -r dotenv/config scripts/putUser.ts",
-    "updateCorrectPicks:dev": "STAGE=dev ts-node -r dotenv/config scripts/updateCorrectPicks.ts",
-    "updateCorrectPicks:prod": "STAGE=prod ts-node -r dotenv/config scripts/updateCorrectPicks.ts"
+    "updatePicksAndOdds:dev": "STAGE=dev ts-node -r dotenv/config scripts/updatePicksAndOdds.ts",
+    "updatePicksAndOdds:prod": "STAGE=prod ts-node -r dotenv/config scripts/updatePicksAndOdds.ts"
   },
   "dependencies": {
     "@vendia/serverless-express": "^4.5.4"

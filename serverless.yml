@@ -76,6 +76,17 @@ resources:
           - AttributeName: username
             KeyType: HASH
         BillingMode: PAY_PER_REQUEST
+    oddsTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: madness_odds_${opt:stage}
+        AttributeDefinitions:
+          - AttributeName: source
+            AttributeType: S
+        KeySchema:
+          - AttributeName: source
+            KeyType: HASH
+        BillingMode: PAY_PER_REQUEST
 
 functions:
   marchmadness:
