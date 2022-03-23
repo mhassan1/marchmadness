@@ -21,8 +21,8 @@ export const getStandings = async () => {
   return MultiSort(standings, {
     admin: 'ASC',
     winFrequency: 'DESC',
-    points: 'DESC',
     potential: 'DESC',
+    points: 'DESC',
     username: 'ASC',
   })
 }
@@ -57,8 +57,8 @@ const _getStandings = (allBrackets: Record<string, Rows>) => {
 
   return MultiSort(standings, {
     admin: 'ASC',
-    points: 'DESC',
     potential: 'DESC',
+    points: 'DESC',
     username: 'ASC',
   })
 }
