@@ -33,6 +33,9 @@ provider:
         - Fn::GetAtt:
             - usersTable
             - Arn
+        - Fn::GetAtt:
+            - oddsTable
+            - Arn
 
 package:
   exclude:
