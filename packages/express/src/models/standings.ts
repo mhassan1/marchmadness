@@ -158,14 +158,12 @@ const _getWinFrequency = (
 }
 
 const getOdds = async () => {
-  const {
-    Item: { odds },
-  } = (await dynamoDBClient
+  const { Item: { odds = [] } = {} } = (await dynamoDBClient
     .get({
       TableName: MADNESS_ODDS,
       Key: { source: 'msnbc' },
     })
-    .promise()) as unknown as { Item: { odds: Odds } }
+    .promise()) as unknown as { Item: undefined | { odds: Odds } }
 
   return Object.fromEntries(
     odds.map(({ team1_id, team1_moneyline, team2_id, team2_moneyline }) => {
