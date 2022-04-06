@@ -1523,18 +1523,18 @@ __metadata:
   linkType: hard
 
 "@serverless/dashboard-plugin@npm:^6.1.5":
-  version: 6.1.5
-  resolution: "@serverless/dashboard-plugin@npm:6.1.5"
+  version: 6.2.1
+  resolution: "@serverless/dashboard-plugin@npm:6.2.1"
   dependencies:
     "@serverless/event-mocks": ^1.1.1
     "@serverless/platform-client": ^4.3.2
-    "@serverless/utils": ^6.0.2
+    "@serverless/utils": ^6.0.3
     child-process-ext: ^2.1.1
     chokidar: ^3.5.3
     flat: ^5.0.2
     fs-extra: ^9.1.0
     js-yaml: ^4.1.0
-    jszip: ^3.7.1
+    jszip: ^3.8.0
     lodash: ^4.17.21
     memoizee: ^0.4.15
     ncjsm: ^4.3.0
@@ -1542,11 +1542,11 @@ __metadata:
     node-fetch: ^2.6.7
     open: ^7.4.2
     semver: ^7.3.5
-    simple-git: ^2.48.0
+    simple-git: ^3.5.0
     type: ^2.6.0
     uuid: ^8.3.2
     yamljs: ^0.3.0
-  checksum: c6cdcae586eb60b58a131237d9ae1c97be64f2de72c5f86ccd182f3c4cc412d179e77b3ef1c291f9128e6067ed6d4a23b8a19b5022ca53c5596289e230af3656
+  checksum: 62891c8088ffa7274386699ad2406f0c96391dfddc8d60dd717c7470b157e64d6477d38a1055e945f0d4c0993cc18b5bd6b9a3f18b29bfe50f90341af1ee043e
   languageName: node
   linkType: hard
 
@@ -1583,7 +1583,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@serverless/utils@npm:^6.0.2, @serverless/utils@npm:^6.0.3":
+"@serverless/utils@npm:^6.0.3":
   version: 6.0.3
   resolution: "@serverless/utils@npm:6.0.3"
   dependencies:
@@ -6284,15 +6284,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jszip@npm:^3.7.1":
-  version: 3.7.1
-  resolution: "jszip@npm:3.7.1"
+"jszip@npm:^3.8.0":
+  version: 3.9.1
+  resolution: "jszip@npm:3.9.1"
   dependencies:
     lie: ~3.3.0
     pako: ~1.0.2
     readable-stream: ~2.3.6
     set-immediate-shim: ~1.0.1
-  checksum: 67d737a82b294cc102e7451e32d5acbbab29860399be460cae598084327e6f2ea0c9bca2d3dad701da6a75ddf77f34c6a1dd7db0c3d5c0fec5998b7e56d6d59d
+  checksum: 8c4c3e99beea3dad8a0f965f2f84d3d0f68aa7d936e069f64982fe393745d27ea6aa82c5dbd7376c73f94cfad1a0ecbf240c7a380419d3d1192148c4ef8a381d
   languageName: node
   linkType: hard
 
@@ -6947,9 +6947,9 @@ __metadata:
   linkType: hard
 
 "minimist@npm:^1.2.0, minimist@npm:^1.2.5":
-  version: 1.2.5
-  resolution: "minimist@npm:1.2.5"
-  checksum: 86706ce5b36c16bfc35c5fe3dbb01d5acdc9a22f2b6cc810b6680656a1d2c0e44a0159c9a3ba51fb072bb5c203e49e10b51dcd0eec39c481f4c42086719bae52
+  version: 1.2.6
+  resolution: "minimist@npm:1.2.6"
+  checksum: d15428cd1e11eb14e1233bcfb88ae07ed7a147de251441d61158619dfb32c4d7e9061d09cab4825fdee18ecd6fce323228c8c47b5ba7cd20af378ca4048fb3fb
   languageName: node
   linkType: hard
 
@@ -7195,9 +7195,9 @@ __metadata:
   linkType: hard
 
 "node-forge@npm:^1.2.0":
-  version: 1.2.1
-  resolution: "node-forge@npm:1.2.1"
-  checksum: af4f88c3f69362359f35f6a9e231b35c96d906eeb6e976fb92742afe7fcdd76439dc22b41ce3755389d171f6320756ec7505bdfa7b252466c091b8c519a22674
+  version: 1.3.1
+  resolution: "node-forge@npm:1.3.1"
+  checksum: 08fb072d3d670599c89a1704b3e9c649ff1b998256737f0e06fbd1a5bf41cae4457ccaee32d95052d80bbafd9ffe01284e078c8071f0267dc9744e51c5ed42a9
   languageName: node
   linkType: hard
 
@@ -9050,14 +9050,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"simple-git@npm:^2.48.0":
-  version: 2.48.0
-  resolution: "simple-git@npm:2.48.0"
+"simple-git@npm:^3.5.0":
+  version: 3.5.0
+  resolution: "simple-git@npm:3.5.0"
   dependencies:
     "@kwsites/file-exists": ^1.1.1
     "@kwsites/promise-deferred": ^1.1.1
-    debug: ^4.3.2
-  checksum: ba84b942ad5cebb9d43df2f147e414e348584f40023121896959f22d05e260ae71b862a93db5c473413f8d218f2122f2964d22f6b7bd77cc12dabc7e73b066be
+    debug: ^4.3.3
+  checksum: be078d9e898d1dea99bb15d4f6927c0f61aafde73114c7423fb0efca6d6f99012da2a2f43b5e2151a1707994cc9c75139bc12e3d307dd25da48ed1dce1167748
   languageName: node
   linkType: hard
 
