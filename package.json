@@ -8,6 +8,8 @@
     "hook:before:package:initialize": "yarn workspaces foreach run build",
     "deploy:dev": "sls deploy --stage dev",
     "deploy:prod": "sls deploy --stage prod",
+    "teardown:dev": "sls remove --stage dev",
+    "teardown:prod": "sls remove --stage prod",
     "format": "prettier --write .",
     "lint": "eslint --fix .",
     "tsc-check": "echo Checking types... && yarn workspaces foreach --verbose run tsc --noEmit",

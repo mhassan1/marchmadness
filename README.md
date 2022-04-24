@@ -36,3 +36,7 @@ To manually update picks, run `yarn updateCorrectPicks`
 9. Add/update teams as needed to `packages/express/src/models/team.ts`
    Other teams can be found here (click on a team to see the `team_id` in the URL): https://scores.nbcsports.com/cbk/teams.asp
 10. Add users with `yarn putUser:dev <username> <password>`
+
+## Teardown
+
+Run `yarn teardown:dev` and `yarn teardown:prod`. This will destroy all infrastructure, including DynamoDB tables.
