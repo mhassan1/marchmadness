@@ -21,7 +21,7 @@
     "multi-sort": "^2.0.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.15",
+    "nodemon": "^2.0.19",
     "ts-node": "^10.6.0",
     "typescript": "~4.6.2"
   }
