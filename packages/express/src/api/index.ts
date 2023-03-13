@@ -112,6 +112,12 @@ router.get('/setup', async (req, res, next) => {
 router.post('/setup', async (req, res, next) => {
   try {
     await putSetupBracket(req.body)
+    await putFillInBracket(
+      'admin',
+      Array(132)
+        .fill(undefined)
+        .map((_, i) => i)
+    )
     res.status(204).json({})
   } catch (err) {
     next(err)
