@@ -42,8 +42,8 @@ export default class Standings extends Component<Props> {
                     : standing.username[0].toUpperCase() +
                       standing.username.slice(1)}
                 </td>
-                <td>{standing.points}</td>
-                <td>{standing.potential}</td>
+                <td>{commafy(standing.points)}</td>
+                <td>{commafy(standing.potential)}</td>
                 <td>
                   {standing.username !== 'admin'
                     ? 'winFrequency' in standing
@@ -70,3 +70,8 @@ export default class Standings extends Component<Props> {
     )
   }
 }
+
+const commafy = (num: number): string =>
+  num < 1000
+    ? String(num)
+    : `${String(num).slice(0, -3)},${String(num).slice(-3)}`
