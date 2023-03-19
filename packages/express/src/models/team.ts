@@ -64,7 +64,7 @@ export const teams = [
   [615, 'Vanderbilt'],
   [648, 'Wichita St'],
   [1383, 'Florida GC'],
-  [200, 'Farleigh Dickinson'],
+  [200, 'Fairleigh Dickinson'],
   [357, 'Michigan'],
   [599, 'Tulsa'],
   [2, 'Air Force'],
