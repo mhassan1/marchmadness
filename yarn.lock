@@ -2891,12 +2891,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"axios@npm:^0.26.0":
-  version: 0.26.0
-  resolution: "axios@npm:0.26.0"
+"axios@npm:^1.6.0":
+  version: 1.6.1
+  resolution: "axios@npm:1.6.1"
   dependencies:
-    follow-redirects: "npm:^1.14.8"
-  checksum: 22a8e41f1d2fc1a923fbb68b6b0025f27dbb0b51fba80124c0e432dfa347f8827d10820fa131233d222343d4790776d87b80081363c6623ad8a2e1d0586e5ee8
+    follow-redirects: "npm:^1.15.0"
+    form-data: "npm:^4.0.0"
+    proxy-from-env: "npm:^1.1.0"
+  checksum: ca2c6f56659a7f19e4a99082f549fe151952f6fd8aa72ed148559ab2d6a32ce37cd5dc72ce6d4d3cd91f0c1e2617c7c95c20077e5e244a79f319a6c0ce41204f
   languageName: node
   linkType: hard
 
@@ -3531,7 +3533,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"combined-stream@npm:^1.0.6":
+"combined-stream@npm:^1.0.6, combined-stream@npm:^1.0.8":
   version: 1.0.8
   resolution: "combined-stream@npm:1.0.8"
   dependencies:
@@ -5029,13 +5031,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"follow-redirects@npm:^1.0.0, follow-redirects@npm:^1.14.0, follow-redirects@npm:^1.14.8":
+"follow-redirects@npm:^1.0.0, follow-redirects@npm:^1.14.0":
   version: 1.14.9
   resolution: "follow-redirects@npm:1.14.9"
   peerDependenciesMeta:
     debug:
       optional: true
   checksum: 08c465c17cbf3011ad16516609ee476abffa8fd1ff78c2082f1ff43614cb06586a0ccc8e99e5ebe13da06d064367cb269789e3ca0e93e2ad5b24fdc30b4294b6
+  languageName: node
+  linkType: hard
+
+"follow-redirects@npm:^1.15.0":
+  version: 1.15.3
+  resolution: "follow-redirects@npm:1.15.3"
+  peerDependenciesMeta:
+    debug:
+      optional: true
+  checksum: 915a2cf22e667bdf47b1a43cc6b7dce14d95039e9bbf9a24d0e739abfbdfa00077dd43c86d4a7a19efefcc7a99af144920a175eedc3888d268af5df67c272ee5
   languageName: node
   linkType: hard
 
@@ -5056,6 +5068,17 @@ __metadata:
     combined-stream: "npm:^1.0.6"
     mime-types: "npm:^2.1.12"
   checksum: 7e8fb913b84a7ac04074781a18d0f94735bbe82815ff35348803331f6480956ff0035db5bcf15826edee09fe01e665cfac664678f1526646a6374ee13f960e56
+  languageName: node
+  linkType: hard
+
+"form-data@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "form-data@npm:4.0.0"
+  dependencies:
+    asynckit: "npm:^0.4.0"
+    combined-stream: "npm:^1.0.8"
+    mime-types: "npm:^2.1.12"
+  checksum: cb6f3ac49180be03ff07ba3ff125f9eba2ff0b277fb33c7fc47569fc5e616882c5b1c69b9904c4c4187e97dd0419dd03b134174756f296dec62041e6527e2c6e
   languageName: node
   linkType: hard
 
@@ -6719,7 +6742,7 @@ __metadata:
     "@types/cors": "npm:^2.8.12"
     "@types/express-session": "npm:^1.17.4"
     aws-sdk: "npm:^2.1086.0"
-    axios: "npm:^0.26.0"
+    axios: "npm:^1.6.0"
     body-parser: "npm:^1.19.2"
     connect-dynamodb: "npm:^2.0.4"
     cors: "npm:^2.8.5"
@@ -6746,7 +6769,7 @@ __metadata:
     "@types/react": "npm:^17.0.39"
     "@types/react-dom": "npm:^17.0.13"
     autoprefixer: "npm:^10.4.2"
-    axios: "npm:^0.26.0"
+    axios: "npm:^1.6.0"
     babel-loader: "npm:^8.2.3"
     bootstrap: "npm:^5.1.3"
     css-loader: "npm:^6.6.0"
@@ -7998,6 +8021,13 @@ __metadata:
     forwarded: "npm:0.2.0"
     ipaddr.js: "npm:1.9.1"
   checksum: c3eed999781a35f7fd935f398b6d8920b6fb00bbc14287bc6de78128ccc1a02c89b95b56742bf7cf0362cc333c61d138532049c7dedc7a328ef13343eff81210
+  languageName: node
+  linkType: hard
+
+"proxy-from-env@npm:^1.1.0":
+  version: 1.1.0
+  resolution: "proxy-from-env@npm:1.1.0"
+  checksum: fe7dd8b1bdbbbea18d1459107729c3e4a2243ca870d26d34c2c1bcd3e4425b7bcc5112362df2d93cc7fb9746f6142b5e272fd1cc5c86ddf8580175186f6ad42b
   languageName: node
   linkType: hard
 
