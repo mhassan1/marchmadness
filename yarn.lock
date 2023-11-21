@@ -1754,12 +1754,12 @@ __metadata:
   linkType: hard
 
 "@serverless/platform-client@npm:^4.3.2":
-  version: 4.3.2
-  resolution: "@serverless/platform-client@npm:4.3.2"
+  version: 4.5.1
+  resolution: "@serverless/platform-client@npm:4.5.1"
   dependencies:
     adm-zip: "npm:^0.5.5"
     archiver: "npm:^5.3.0"
-    axios: "npm:^0.21.1"
+    axios: "npm:^1.6.2"
     fast-glob: "npm:^3.2.7"
     https-proxy-agent: "npm:^5.0.0"
     ignore: "npm:^5.1.8"
@@ -1772,7 +1772,7 @@ __metadata:
     throat: "npm:^5.0.0"
     traverse: "npm:^0.6.6"
     ws: "npm:^7.5.3"
-  checksum: 2a1724c189101f8c7de527fc2ae6ebe1241e3124632ca6fa44439341ca853e81007eb6a0d31f2170d1f331efeb81497a4dbcc12fb61e91cf07804fed0ca362b6
+  checksum: b31361c1221945f0419580da39f00d3d12f11e06c800d75f0486168c4a00cda86e3f9539a494ab052dea1b7b891e8dea337410ce4913ba426863082d5f025a73
   languageName: node
   linkType: hard
 
@@ -2882,15 +2882,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"axios@npm:^0.21.1":
-  version: 0.21.4
-  resolution: "axios@npm:0.21.4"
-  dependencies:
-    follow-redirects: "npm:^1.14.0"
-  checksum: fbcff55ec68f71f02d3773d467db2fcecdf04e749826c82c2427a232f9eba63242150a05f15af9ef15818352b814257541155de0281f8fb2b7e8a5b79f7f2142
-  languageName: node
-  linkType: hard
-
 "axios@npm:^1.6.0":
   version: 1.6.1
   resolution: "axios@npm:1.6.1"
@@ -2899,6 +2890,17 @@ __metadata:
     form-data: "npm:^4.0.0"
     proxy-from-env: "npm:^1.1.0"
   checksum: ca2c6f56659a7f19e4a99082f549fe151952f6fd8aa72ed148559ab2d6a32ce37cd5dc72ce6d4d3cd91f0c1e2617c7c95c20077e5e244a79f319a6c0ce41204f
+  languageName: node
+  linkType: hard
+
+"axios@npm:^1.6.2":
+  version: 1.6.2
+  resolution: "axios@npm:1.6.2"
+  dependencies:
+    follow-redirects: "npm:^1.15.0"
+    form-data: "npm:^4.0.0"
+    proxy-from-env: "npm:^1.1.0"
+  checksum: 9b77e030e85e4f9cbcba7bb52fbff67d6ce906c92d213e0bd932346a50140faf83733bf786f55bd58301bd92f9973885c7b87d6348023e10f7eaf286d0791a1d
   languageName: node
   linkType: hard
 
@@ -5031,7 +5033,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"follow-redirects@npm:^1.0.0, follow-redirects@npm:^1.14.0":
+"follow-redirects@npm:^1.0.0":
   version: 1.14.9
   resolution: "follow-redirects@npm:1.14.9"
   peerDependenciesMeta:
