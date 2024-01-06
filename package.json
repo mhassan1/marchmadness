@@ -37,5 +37,5 @@
     "**/*.{ts,tsx,js,json,yml,html,scss}": "prettier --write --ignore-unknown",
     "**/*.{ts,tsx,js}": "eslint --fix"
   },
-  "packageManager": "yarn@4.0.0"
+  "packageManager": "yarn@4.0.2"
 }
