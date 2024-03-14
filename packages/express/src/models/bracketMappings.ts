@@ -877,16 +877,14 @@ export const bracketMappings = [
 })) as Rows
 
 export const getBracketMappingsWithTeams = async (): Promise<Rows> => {
-  const { Items } = (await dynamoDBClient
-    .scan({
-      TableName: MADNESS_BRACKET_MAPPINGS,
-    })
-    .promise()) as unknown as { Items: Rows }
+  const { Items } = (await dynamoDBClient.scan({
+    TableName: MADNESS_BRACKET_MAPPINGS,
+  })) as unknown as { Items: Rows }
   const teamsByBracketId = Object.fromEntries(
     Items.map(({ bracket_id, team_id, fixed, hier, seed }) => [
       bracket_id,
       { team_id, fixed, hier, seed },
-    ])
+    ]),
   )
   return bracketMappings.map((mapping) => {
     const team = teamsByBracketId[mapping.bracket_id]
@@ -915,6 +913,6 @@ export const getBracketMappingsWithTeamsLookup = async (): Promise<
 > => {
   const bracketMappings = await getBracketMappingsWithTeams()
   return Object.fromEntries(
-    bracketMappings.map((mapping) => [mapping.bracket_id, mapping])
+    bracketMappings.map((mapping) => [mapping.bracket_id, mapping]),
   )
 }

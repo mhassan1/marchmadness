@@ -20,22 +20,22 @@
     "updatePicksAndOdds:prod": "STAGE=prod ts-node -r dotenv/config scripts/updatePicksAndOdds.ts"
   },
   "dependencies": {
-    "@vendia/serverless-express": "^4.5.4"
+    "@vendia/serverless-express": "^4.12.6"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^5.13.0",
-    "@typescript-eslint/parser": "^5.13.0",
-    "eslint": "^8.10.0",
-    "husky": "^7.0.4",
-    "lint-staged": "^12.3.5",
-    "prettier": "^2.5.1",
-    "serverless": "^3.7.1",
+    "@typescript-eslint/eslint-plugin": "^7.2.0",
+    "@typescript-eslint/parser": "^7.2.0",
+    "eslint": "^8.57.0",
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.2",
+    "prettier": "^3.2.5",
+    "serverless": "^3.38.0",
     "serverless-hooks": "^1.0.0",
-    "ts-node": "^10.6.0"
+    "ts-node": "^10.9.2"
   },
   "lint-staged": {
     "**/*.{ts,tsx,js,json,yml,html,scss}": "prettier --write --ignore-unknown",
     "**/*.{ts,tsx,js}": "eslint --fix"
   },
-  "packageManager": "yarn@4.0.2"
+  "packageManager": "yarn@4.1.1"
 }

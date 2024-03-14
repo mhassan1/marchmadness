@@ -62,28 +62,28 @@ export default class Cell extends Component<Props> {
               selected={team.team_id == this.props.team_id}
             >
               {team.team_name}
-            </option>
+            </option>,
           )
         }
         options.push(
           <option id="round0-1" value="-1" selected={this.props.team_id == -1}>
             Round 0 - #1
-          </option>
+          </option>,
         )
         options.push(
           <option id="round0-1" value="-2" selected={this.props.team_id == -2}>
             Round 0 - #2
-          </option>
+          </option>,
         )
         options.push(
           <option id="round0-1" value="-4" selected={this.props.team_id == -4}>
             Round 0 - #3
-          </option>
+          </option>,
         ) // 4 then 3 because of out->in ordering on both sides of bracket
         options.push(
           <option id="round0-1" value="-3" selected={this.props.team_id == -3}>
             Round 0 - #4
-          </option>
+          </option>,
         )
 
         return (

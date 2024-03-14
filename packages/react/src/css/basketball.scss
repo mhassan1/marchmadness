@@ -13,7 +13,9 @@
   width: 70px;
   height: 70px;
   position: relative;
-  animation: jump 1s infinite, move 15s;
+  animation:
+    jump 1s infinite,
+    move 15s;
   animation-fill-mode: forwards;
   overflow: hidden;
 }
@@ -27,7 +29,9 @@
   border-radius: 100%;
   background: url('https://freesvg.org/img/1586349622virus.png');
   position: absolute;
-  animation: rotate 2s infinite, back 1s infinite;
+  animation:
+    rotate 2s infinite,
+    back 1s infinite;
   z-index: 5;
   background-repeat: repeat;
   background-size: cover;

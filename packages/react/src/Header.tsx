@@ -20,7 +20,7 @@ export default class Header extends Component<Props> {
           >
             Standings
           </a>
-        </li>
+        </li>,
       )
       links.push(
         <li className="nav-item">
@@ -31,7 +31,7 @@ export default class Header extends Component<Props> {
           >
             Bracket
           </a>
-        </li>
+        </li>,
       )
       links.push(
         <li className="nav-item">
@@ -42,7 +42,7 @@ export default class Header extends Component<Props> {
           >
             Setup
           </a>
-        </li>
+        </li>,
       )
     }
     return (

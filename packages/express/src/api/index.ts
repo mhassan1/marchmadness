@@ -38,7 +38,7 @@ router.post(
   (req, res, next) => {
     req.session ? req.session.destroy(next) : next()
   },
-  (req, res) => res.status(204).json({})
+  (req, res) => res.status(204).json({}),
 )
 
 router.get('/me', (req, res) => {
@@ -116,7 +116,7 @@ router.post('/setup', async (req, res, next) => {
       'admin',
       Array(132)
         .fill(undefined)
-        .map((_, i) => i)
+        .map((_, i) => i),
     )
     res.status(204).json({})
   } catch (err) {

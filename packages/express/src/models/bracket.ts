@@ -11,15 +11,13 @@ export const getFillInBracket = async (username: string) => {
   const rows = Object.values(bracketMappingsLookup)
   const {
     Item: { bracket = [] },
-  } = (await dynamoDBClient
-    .get({
-      TableName: MADNESS_USERS,
-      Key: { username },
-    })
-    .promise()) as unknown as { Item: { bracket: Bracket[number] } }
+  } = (await dynamoDBClient.get({
+    TableName: MADNESS_USERS,
+    Key: { username },
+  })) as unknown as { Item: { bracket: Bracket[number] } }
 
   const bracketObj = Object.fromEntries(
-    bracket.map(({ bracket_id, pick }) => [bracket_id, { pick }])
+    bracket.map(({ bracket_id, pick }) => [bracket_id, { pick }]),
   )
 
   rows.forEach((row) => {
@@ -81,16 +79,14 @@ export const putFillInBracket = async (username: string, body: number[]) => {
     }
   }
 
-  await dynamoDBClient
-    .update({
-      TableName: MADNESS_USERS,
-      Key: { username },
-      UpdateExpression: 'set bracket = :bracket',
-      ExpressionAttributeValues: {
-        ':bracket': rows,
-      },
-    })
-    .promise()
+  await dynamoDBClient.update({
+    TableName: MADNESS_USERS,
+    Key: { username },
+    UpdateExpression: 'set bracket = :bracket',
+    ExpressionAttributeValues: {
+      ':bracket': rows,
+    },
+  })
 }
 
 export const getAllBracketsRaw = async () => {
@@ -102,18 +98,16 @@ export const getAllBracketsRaw = async () => {
 }
 
 const _getAllBracketsRaw = async (
-  bracketMappingsLookup: Record<number, Rows[number]>
+  bracketMappingsLookup: Record<number, Rows[number]>,
 ) => {
-  const { Items: users } = (await dynamoDBClient
-    .scan({
-      TableName: MADNESS_USERS,
-      FilterExpression: 'submitted = :submitted or username = :admin',
-      ExpressionAttributeValues: {
-        ':submitted': true,
-        ':admin': 'admin',
-      },
-    })
-    .promise()) as unknown as { Items: (User & { bracket: Rows })[] }
+  const { Items: users } = (await dynamoDBClient.scan({
+    TableName: MADNESS_USERS,
+    FilterExpression: 'submitted = :submitted or username = :admin',
+    ExpressionAttributeValues: {
+      ':submitted': true,
+      ':admin': 'admin',
+    },
+  })) as unknown as { Items: (User & { bracket: Rows })[] }
 
   const { bracket: correctBracket } =
     users.find(({ username }) => username === 'admin') || {}
@@ -122,7 +116,7 @@ const _getAllBracketsRaw = async (
   }
 
   const correctBracketLookup = Object.fromEntries(
-    correctBracket.map(({ bracket_id, pick }) => [bracket_id, pick])
+    correctBracket.map(({ bracket_id, pick }) => [bracket_id, pick]),
   )
 
   const brackets: Record<string, Rows> = {}
@@ -137,8 +131,8 @@ const _getAllBracketsRaw = async (
           !correctPick || String(correctPick) === String(row.bracket_id)
             ? 'none or strike'
             : row.pick === correctPick
-            ? 'green'
-            : 'red or strike'
+              ? 'green'
+              : 'red or strike'
 
         return {
           ...bracketMappingsLookup[row.bracket_id],
@@ -152,15 +146,18 @@ const _getAllBracketsRaw = async (
       .filter(Boolean) as Rows
 
     // compute first round where a pick was "red or strike"
-    const format2View = format1View.reduce((acc, row) => {
-      if (row.format1 === 'red or strike') {
-        acc[row.mypick as number] = Math.min(
-          acc[row.mypick as number] ?? Infinity,
-          row.round
-        )
-      }
-      return acc
-    }, {} as Record<number, number>)
+    const format2View = format1View.reduce(
+      (acc, row) => {
+        if (row.format1 === 'red or strike') {
+          acc[row.mypick as number] = Math.min(
+            acc[row.mypick as number] ?? Infinity,
+            row.round,
+          )
+        }
+        return acc
+      },
+      {} as Record<number, number>,
+    )
 
     // consolidate
     brackets[username] = format1View.map((row) => {
@@ -198,21 +195,19 @@ export const getAllBrackets = async () => {
         })
       }
       return [username, makeBracket(rows)]
-    })
+    }),
   )
 }
 
 export const markUserSubmitted = async (username: string) => {
-  await dynamoDBClient
-    .update({
-      TableName: MADNESS_USERS,
-      Key: { username },
-      UpdateExpression: 'set submitted = :submitted',
-      ExpressionAttributeValues: {
-        ':submitted': true,
-      },
-    })
-    .promise()
+  await dynamoDBClient.update({
+    TableName: MADNESS_USERS,
+    Key: { username },
+    UpdateExpression: 'set submitted = :submitted',
+    ExpressionAttributeValues: {
+      ':submitted': true,
+    },
+  })
 }
 
 const makeBracket = (rows: Rows = []): Bracket => {

@@ -10,7 +10,7 @@ export const getStandings = async () => {
   const winFrequency = _getWinFrequency(
     allBrackets,
     bracketMappings,
-    await getOdds()
+    await getOdds(),
   )
   if (!winFrequency) return standings
 
@@ -37,7 +37,7 @@ const _getStandings = (allBrackets: Record<string, Rows>) => {
       }
       if (
         ['{"color":"green"}', '{"color":"black"}'].includes(
-          row.format3 as string
+          row.format3 as string,
         )
       ) {
         potential += 10 * 2 ** (row.round + 1)
@@ -67,7 +67,7 @@ const nbit = (number: number, N: number) => (number >> (N - 1)) & 1
 const score = (
   allPicks: Record<string, Rows>,
   username: string,
-  sim: (number | undefined)[]
+  sim: (number | undefined)[],
 ) => {
   const bracket = allPicks[username]
   let score = 0
@@ -82,7 +82,7 @@ const score = (
 const _getWinFrequency = (
   allPicks: Record<string, Rows>,
   bracketMappings: Record<number, Rows[number]>,
-  odds: Record<string, number>
+  odds: Record<string, number>,
 ) => {
   const adminPicks = allPicks.admin
   const usernames = Object.keys(allPicks)
@@ -158,19 +158,17 @@ const _getWinFrequency = (
 }
 
 const getOdds = async () => {
-  const { Item: { odds = [] } = {} } = (await dynamoDBClient
-    .get({
-      TableName: MADNESS_ODDS,
-      Key: { source: 'msnbc' },
-    })
-    .promise()) as unknown as { Item: undefined | { odds: Odds } }
+  const { Item: { odds = [] } = {} } = (await dynamoDBClient.get({
+    TableName: MADNESS_ODDS,
+    Key: { source: 'msnbc' },
+  })) as unknown as { Item: undefined | { odds: Odds } }
 
   return Object.fromEntries(
     odds.map(({ team1_id, team1_moneyline, team2_id, team2_moneyline }) => {
       const team1_prob = moneylineToProb(team1_moneyline)
       const team2_prob = moneylineToProb(team2_moneyline)
       return [`${team1_id}_${team2_id}`, team1_prob / (team1_prob + team2_prob)]
-    })
+    }),
   )
 }
 

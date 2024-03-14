@@ -345,5 +345,5 @@ export const teamsLookup = teams.reduce<string[]>(
     acc[team_id as number] = team_name
     return acc
   },
-  []
+  [],
 )

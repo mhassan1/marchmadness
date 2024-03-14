@@ -10,7 +10,7 @@ custom:
 
 provider:
   name: aws
-  runtime: nodejs14.x
+  runtime: nodejs20.x
   profile: marchmadness
   memorySize: 512
   iamRoleStatements:
@@ -23,6 +23,7 @@ provider:
         - dynamodb:UpdateItem
         - dynamodb:BatchWriteItem
         - dynamodb:DeleteItem
+        - dynamodb:DescribeTable
       Resource:
         - Fn::GetAtt:
             - sessionsTable

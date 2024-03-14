@@ -9,16 +9,14 @@ if (!username || !password) {
 
 const run = async () => {
   console.log(`Putting user ${username}...`)
-  await dynamoDBClient
-    .update({
-      TableName: MADNESS_USERS,
-      Key: { username: username.toLowerCase() },
-      UpdateExpression: 'set password = :password',
-      ExpressionAttributeValues: {
-        ':password': createHash('sha256').update(password).digest('hex'),
-      },
-    })
-    .promise()
+  await dynamoDBClient.update({
+    TableName: MADNESS_USERS,
+    Key: { username: username.toLowerCase() },
+    UpdateExpression: 'set password = :password',
+    ExpressionAttributeValues: {
+      ':password': createHash('sha256').update(password).digest('hex'),
+    },
+  })
 }
 
 run()

@@ -6,7 +6,7 @@ import connectSessionDynamoDb from 'connect-dynamodb'
 import api from './api'
 import { MADNESS_SESSIONS } from './constants'
 
-const DynamoDbSessionStore = connectSessionDynamoDb({ session })
+const DynamoDbSessionStore = connectSessionDynamoDb(session)
 const store = new DynamoDbSessionStore({
   table: MADNESS_SESSIONS,
 })
@@ -18,7 +18,7 @@ app.use(
   cors({
     origin: 'http://localhost:3000', // TODO this is needed for local development only
     credentials: true,
-  })
+  }),
 )
 app.use(
   session({
@@ -29,7 +29,7 @@ app.use(
     cookie: {
       maxAge: 60 * 24 * 60 * 60 * 1000, // 60 days
     },
-  })
+  }),
 )
 app.use('/api', api)
 

@@ -1,4 +1,4 @@
-import React, { Component, CSSProperties } from 'react'
+import React, { Component, CSSProperties, ComponentProps } from 'react'
 import { Bracket as BracketType, Rows } from 'marchmadness-types'
 import Cell from './Cell'
 
@@ -26,7 +26,7 @@ export default class Bracket extends Component<Props> {
           ...JSON.parse(props.format3 || '{}'),
           ...JSON.parse(props.style || '{}'),
         }
-        cells.push(<Cell {...props} />)
+        cells.push(<Cell {...(props as ComponentProps<typeof Cell>)} />)
       }
       rows.push(<tr key={i}>{cells}</tr>)
     }

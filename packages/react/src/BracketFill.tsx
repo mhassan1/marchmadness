@@ -120,7 +120,7 @@ export default class BracketFill extends Component<Props> {
       if (!isValid) {
         this.setState({ bracket: this.bracket })
         alert(
-          'You are missing some picks (shown in red)! If you want to save your work and come back later, click Save.'
+          'You are missing some picks (shown in red)! If you want to save your work and come back later, click Save.',
         )
         return
       }
@@ -147,7 +147,7 @@ export default class BracketFill extends Component<Props> {
           type="submit"
           name="save"
           value="Save"
-        />
+        />,
       )
       if (this.props.user.username !== 'admin') {
         buttons.push(
@@ -156,7 +156,7 @@ export default class BracketFill extends Component<Props> {
             name="submit"
             value="Submit"
             onClick={this.submitButton}
-          />
+          />,
         )
       }
       return (
