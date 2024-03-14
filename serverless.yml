@@ -13,37 +13,40 @@ provider:
   runtime: nodejs20.x
   profile: marchmadness
   memorySize: 512
-  iamRoleStatements:
-    - Effect: Allow
-      Action:
-        - dynamodb:Query
-        - dynamodb:Scan
-        - dynamodb:GetItem
-        - dynamodb:PutItem
-        - dynamodb:UpdateItem
-        - dynamodb:BatchWriteItem
-        - dynamodb:DeleteItem
-        - dynamodb:DescribeTable
-      Resource:
-        - Fn::GetAtt:
-            - sessionsTable
-            - Arn
-        - Fn::GetAtt:
-            - mappingsTable
-            - Arn
-        - Fn::GetAtt:
-            - usersTable
-            - Arn
-        - Fn::GetAtt:
-            - oddsTable
-            - Arn
+  iam:
+    role:
+      statements:
+        - Effect: Allow
+          Action:
+            - dynamodb:Query
+            - dynamodb:Scan
+            - dynamodb:GetItem
+            - dynamodb:PutItem
+            - dynamodb:UpdateItem
+            - dynamodb:BatchWriteItem
+            - dynamodb:DeleteItem
+            - dynamodb:DescribeTable
+          Resource:
+            - Fn::GetAtt:
+                - sessionsTable
+                - Arn
+            - Fn::GetAtt:
+                - mappingsTable
+                - Arn
+            - Fn::GetAtt:
+                - usersTable
+                - Arn
+            - Fn::GetAtt:
+                - oddsTable
+                - Arn
 
 package:
-  exclude:
-    - .idea/**
-    - .vscode/**
-    - .env
-    - .yarn/**
+  patterns:
+    - '!.idea/**'
+    - '!.vscode/**'
+    - '!.env'
+    - '!.yarn/**'
+    - '!putUsers.bash'
 
 resources:
   Resources:
