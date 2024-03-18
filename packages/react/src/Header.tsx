@@ -77,11 +77,17 @@ export default class Header extends Component<Props> {
               </li>
             </ul>
           </div>
-          <div id="ballWrapper" style={{ zIndex: 99 }}>
-            <div id="ball">
-              <span id="ballshad"></span>
+          <div id="ballWrapper1" style={{ zIndex: 99 }}>
+            <div id="ball1">
+              <span id="ballshad1"></span>
             </div>
-            <div id="ballShadow"></div>
+            <div id="ballShadow1"></div>
+          </div>
+          <div id="ballWrapper2" style={{ zIndex: 99 }}>
+            <div id="ball2">
+              <span id="ballshad2"></span>
+            </div>
+            <div id="ballShadow2"></div>
           </div>
         </div>
       </nav>

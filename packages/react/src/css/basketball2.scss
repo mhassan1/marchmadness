@@ -1,0 +1,113 @@
+/* animation container */
+
+#ballWrapper2 {
+  width: 100px;
+  height: 260px;
+  display: block;
+  position: fixed;
+  cursor: pointer;
+  top: 35%;
+}
+
+#ball2 {
+  width: 70px;
+  height: 70px;
+  position: relative;
+  animation:
+    jump2 1s infinite,
+    move2 15s;
+  animation-fill-mode: forwards;
+  overflow: hidden;
+}
+
+/*Ball texture*/
+
+#ball2:after {
+  content: '';
+  width: 70px;
+  height: 70px;
+  border-radius: 100%;
+  background: url('https://www.washingtonpost.com/graphics/2018/politics/2020-presidential-hopefuls/img/cutouts/biden.png');
+  position: absolute;
+  animation:
+    rotate2 2s infinite,
+    back2 1s infinite;
+  z-index: 5;
+  background-repeat: repeat;
+  background-size: cover;
+  animation-timing-function: linear;
+}
+
+/* Animation keyframes */
+
+@keyframes jump2 {
+  0% {
+    top: 0;
+    transform: scale3d(1, 1, 1);
+    border-radius: 100%;
+    animation-timing-function: ease-in;
+  }
+
+  45% {
+    transform: scale3d(1, 1, 1);
+  }
+
+  50% {
+    top: 200px;
+    animation-timing-function: ease-out;
+    transform: scale3d(1.3, 0.8, 1);
+  }
+
+  55% {
+    transform: scale3d(1, 1, 1);
+  }
+
+  60% {
+    transform: scale3d(0.8, 1.1, 1);
+  }
+
+  70% {
+    transform: scale3d(0.95, 1.05, 1);
+  }
+
+  72% {
+    transform: scale3d(1, 1, 1);
+  }
+
+  100% {
+    transform: scale3d(1, 1, 1) translateX(2);
+    top: 0;
+    border-radius: 100%;
+  }
+}
+
+@keyframes move2 {
+  0% {
+    left: -20vw;
+  }
+
+  100% {
+    left: 120vw;
+    display: none;
+  }
+}
+
+@keyframes rotate2 {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes back2 {
+  0% {
+    background-position: top;
+  }
+
+  100% {
+    background-position: bottom;
+  }
+}
