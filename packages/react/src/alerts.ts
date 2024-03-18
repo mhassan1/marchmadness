@@ -4,7 +4,7 @@ export const onSuccess = () => {
     icon: 'success',
     html: `
     <img
-      src="https://img.freepik.com/free-vector/basketball-player-design-against-coronavirus_123847-293.jpg?w=360"
+      src="https://images.news18.com/ibnlive/uploads/2020/11/1604769947_joe-biden-donald-trump.jpg"
       style="animation:wiggle 1s infinite; width: 50%;"
     />
     `,
