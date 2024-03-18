@@ -4,14 +4,16 @@
 const serverlessExpress = require('@vendia/serverless-express')
 const { app } = require('./packages/express/build/app')
 const frontend = require('./packages/react/src/static')
-const { msnbcUpdate } = require('./packages/express/build/msnbcUpdate')
+const {
+  updatePicksAndOdds,
+} = require('./packages/express/build/updatePicksAndOdds')
 
 app.use(frontend)
 const server = serverlessExpress({ app })
 
 exports.handler = async (event, context) => {
   if (event.source === 'aws.events') {
-    return msnbcUpdate()
+    return updatePicksAndOdds()
   }
   return server(event, context)
 }

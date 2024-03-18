@@ -160,7 +160,7 @@ const _getWinFrequency = (
 const getOdds = async () => {
   const { Item: { odds = [] } = {} } = (await dynamoDBClient.get({
     TableName: MADNESS_ODDS,
-    Key: { source: 'msnbc' },
+    Key: { source: 'espn' },
   })) as unknown as { Item: undefined | { odds: Odds } }
 
   return Object.fromEntries(

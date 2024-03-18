@@ -34,7 +34,7 @@ To manually update picks, run `yarn updateCorrectPicks`
 7. Log in as the `admin` user with the chosen password
 8. Go to "Setup" at the top and set up bracket after Selection Sunday and before inviting users
 9. Add/update teams as needed to `packages/express/src/models/team.ts`
-   Other teams can be found here (click on a team to see the `team_id` in the URL): https://scores.nbcsports.com/cbk/teams.asp
+   Other teams can be found here (click on a team to see the `team_id` in the URL): https://www.espn.com/mens-college-basketball/teams
 10. Add users with `yarn putUser:dev <username> <password>`
 
 ## Teardown

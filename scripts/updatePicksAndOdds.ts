@@ -1,7 +1,7 @@
-import { msnbcUpdate } from '../packages/express/src/msnbcUpdate'
+import { updatePicksAndOdds } from '../packages/express/src/updatePicksAndOdds'
 
 const run = async () => {
-  await msnbcUpdate()
+  await updatePicksAndOdds()
 }
 
 run()

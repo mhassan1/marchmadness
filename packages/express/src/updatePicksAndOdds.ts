@@ -5,9 +5,9 @@ import { dynamoDBClient } from './dynamodb'
 import { getBracketMappingsWithTeams } from './models/bracketMappings'
 import { Rows } from 'marchmadness-types'
 
-const gameRegex = /[^>]+id="([^"]+)"[^>]*score="([^"]+)"/
+// https://gist.github.com/akeaswaran/b48b02f1c94f873c6655e7129910fc3b
 
-export const msnbcUpdate = async () => {
+export const updatePicksAndOdds = async () => {
   await picksUpdate()
   await oddsUpdate()
 }
@@ -39,18 +39,18 @@ const picksUpdate = async () => {
   ]
   for (const date of dates) {
     const {
-      data: { games },
+      data: { events },
     } = await axios.get(
-      `https://scores.nbcsports.com/ticker/data/gamesNEW.js.asp?sport=CBK&period=${date}&random=1458147354771`,
+      `http://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/scoreboard?limit=500&dates=${date}`,
     )
-    for (const game of games) {
-      const match = game.match(
-        new RegExp(
-          `<visiting-team${gameRegex.source}.*<home-team${gameRegex.source}.*<gamestate status="Final"`,
-        ),
-      )
-      if (!match) continue
-      const [, team1Id, team1Score, team2Id, team2Score] = match
+    for (const event of events) {
+      if (event.status.type.completed !== true) continue
+      const team1 = event.competitions[0].competitors[0]
+      const team2 = event.competitions[0].competitors[1]
+      const team1Id = Number(team1.id)
+      const team1Score = Number(team1.score)
+      const team2Id = Number(team2.id)
+      const team2Score = Number(team2.score)
 
       const team1Hier = bracketMappingsByTeam[team1Id]?.hier
       const team2Hier = bracketMappingsByTeam[team2Id]?.hier
@@ -103,42 +103,38 @@ const picksUpdate = async () => {
   return adminBracket
 }
 
-const oddsTeamRegex =
-  /<a href="\/cbk\/teamstats.asp\?team=(\d+)&.+?"shsNonMobile">(.+?)<[\s\S]+?"shsNumD"[\s\S]+?"shsNumD">(.*?)</
-const oddsRegex = new RegExp(
-  `"shsNamD shsAwayTeam">${oddsTeamRegex.source}[\\s\\S]+?"shsNamD shsHomeTeam">[\\s]+?at ${oddsTeamRegex.source}`,
-  'g',
-)
-
 export const oddsUpdate = async () => {
   console.log('updating odds')
-  const { data: html } = await axios.get(
-    'https://scores.nbcsports.com/cbk/odds.asp',
+
+  const {
+    data: {
+      sports: [
+        {
+          leagues: [{ events }],
+        },
+      ],
+    },
+  } = await axios.get(
+    `https://site.api.espn.com/apis/v2/scoreboard/header?sport=basketball&league=mens-college-basketball&region=us&lang=en&contentorigin=espn&buyWindow=1m&showAirings=buy%2Clive%2Creplay&showZipLookup=true&tz=America%2FNew_York`,
   )
-  const odds = [...html.matchAll(oddsRegex)]
-    .filter(([, , , team1_moneyline]) => team1_moneyline)
-    .map(
-      ([
-        ,
-        team1_id,
-        team1_name,
-        team1_moneyline,
-        team2_id,
-        team2_name,
-        team2_moneyline,
-      ]) => ({
-        team1_id: Number(team1_id),
-        team1_name,
-        team1_moneyline: Number(team1_moneyline),
-        team2_id: Number(team2_id),
-        team2_name,
-        team2_moneyline: Number(team2_moneyline),
-      }),
-    )
+
+  const odds = []
+  for (const event of events) {
+    const team1 = event.odds.homeTeamOdds
+    const team2 = event.odds.awayTeamOdds
+    odds.push({
+      team1_id: Number(team1.team.id),
+      team1_name: team1.team.abbreviation,
+      team1_moneyline: team1.moneyLine,
+      team2_id: Number(team2.team.id),
+      team2_name: team2.team.abbreviation,
+      team2_moneyline: team2.moneyLine,
+    })
+  }
 
   await dynamoDBClient.update({
     TableName: MADNESS_ODDS,
-    Key: { source: 'msnbc' },
+    Key: { source: 'espn' },
     UpdateExpression: 'set odds = :odds',
     ExpressionAttributeValues: {
       ':odds': odds,

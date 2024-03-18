@@ -12,7 +12,7 @@ import {
 import { teams } from '../models/team'
 import { validateLogin, getAllSubmitted } from '../models/user'
 import { getStandings } from '../models/standings'
-import { msnbcUpdate } from '../msnbcUpdate'
+import { updatePicksAndOdds } from '../updatePicksAndOdds'
 
 declare module 'express-session' {
   interface SessionData {
@@ -124,9 +124,9 @@ router.post('/setup', async (req, res, next) => {
   }
 })
 
-router.get('/msnbcUpdate', async (req, res, next) => {
+router.get('/updatePicksAndOdds', async (req, res, next) => {
   try {
-    res.json(await msnbcUpdate())
+    res.json(await updatePicksAndOdds())
   } catch (err) {
     next(err)
   }
