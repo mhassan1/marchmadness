@@ -210,6 +210,17 @@ export const markUserSubmitted = async (username: string) => {
   })
 }
 
+export const markUserSaved = async (username: string) => {
+  await dynamoDBClient.update({
+    TableName: MADNESS_USERS,
+    Key: { username },
+    UpdateExpression: 'set saved = :saved',
+    ExpressionAttributeValues: {
+      ':saved': true,
+    },
+  })
+}
+
 const makeBracket = (rows: Rows = []): Bracket => {
   const bracket: Bracket = []
   for (let i = 1; i <= 11; i++) {

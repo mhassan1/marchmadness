@@ -2,6 +2,7 @@ export type User = {
   username: string
   password: string
   submitted: boolean
+  saved: boolean
 }
 
 export type Bracket = Array<Rows>

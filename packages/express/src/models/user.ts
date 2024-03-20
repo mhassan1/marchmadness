@@ -13,7 +13,7 @@ export const validateLogin = async (
     Key: {
       username: username.toLowerCase(),
     },
-    ProjectionExpression: 'username, password, submitted',
+    ProjectionExpression: 'username, password, saved, submitted',
   })) as unknown as { Item?: User }
   if (Item?.password !== createHash('sha256').update(password).digest('hex')) {
     throw new Error('Invalid username/password')

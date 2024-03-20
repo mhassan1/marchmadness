@@ -6,6 +6,7 @@ import {
   putFillInBracket,
   getSetupBracket,
   putSetupBracket,
+  markUserSaved,
   markUserSubmitted,
   getAllBrackets,
 } from '../models/bracket'
@@ -69,7 +70,10 @@ router.put('/bracket', async (req, res, next) => {
       throw new Error('already submitted')
     }
     await putFillInBracket(req.session.user.username, req.body)
-    if (req.body.submit) {
+    if (!req.body.submit) {
+      await markUserSaved(req.session.user.username)
+      req.session.user.saved = true
+    } else {
       await markUserSubmitted(req.session.user.username)
       req.session.user.submitted = true
     }

@@ -68,7 +68,10 @@ class Myapp extends Component {
         return 'login'
       }
       if (this.state.view === null || this.state.view === 'home') {
-        return this.state.user.submitted ? 'dashboard' : 'bracket'
+        return this.state.user.submitted ||
+          (this.state.user.username === 'admin' && this.state.user.saved)
+          ? 'dashboard'
+          : 'bracket'
       }
       return this.state.view
     })()
