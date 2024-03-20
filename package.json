@@ -13,6 +13,7 @@
     "format": "prettier --write .",
     "lint": "eslint --fix .",
     "tsc-check": "echo Checking types... && yarn workspaces foreach --all --verbose run tsc --noEmit",
+    "start": "yarn workspaces foreach --all --verbose --parallel --interlaced run start",
     "postinstall": "husky install",
     "putUser:dev": "STAGE=dev ts-node -r dotenv/config scripts/putUser.ts",
     "putUser:prod": "STAGE=prod ts-node -r dotenv/config scripts/putUser.ts",
