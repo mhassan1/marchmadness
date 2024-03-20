@@ -13,6 +13,7 @@ useDotenv: true
 provider:
   name: aws
   runtime: nodejs20.x
+  timeout: 10
   profile: marchmadness
   memorySize: 512
   iam:

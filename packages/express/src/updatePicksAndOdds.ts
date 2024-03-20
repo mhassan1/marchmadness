@@ -106,30 +106,46 @@ const picksUpdate = async () => {
 export const oddsUpdate = async () => {
   console.log('updating odds')
 
-  const {
-    data: {
-      sports: [
-        {
-          leagues: [{ events }],
-        },
-      ],
-    },
-  } = await axios.get(
-    `https://site.api.espn.com/apis/v2/scoreboard/header?sport=basketball&league=mens-college-basketball&region=us&lang=en&contentorigin=espn&buyWindow=1m&showAirings=buy%2Clive%2Creplay&showZipLookup=true&tz=America%2FNew_York`,
-  )
-
   const odds = []
-  for (const event of events) {
-    const team1 = event.odds.homeTeamOdds
-    const team2 = event.odds.awayTeamOdds
-    odds.push({
-      team1_id: Number(team1.team.id),
-      team1_name: team1.team.abbreviation,
-      team1_moneyline: team1.moneyLine,
-      team2_id: Number(team2.team.id),
-      team2_name: team2.team.abbreviation,
-      team2_moneyline: team2.moneyLine,
-    })
+
+  const dates = []
+  for (let i = -1; i < 11; i++) {
+    dates.push(
+      new Date(Date.now() + i * 24 * 60 * 60 * 1000)
+        .toISOString()
+        .slice(0, 10)
+        .replace(/-/g, ''),
+    )
+  }
+
+  for (const date of dates) {
+    const {
+      data: {
+        sports: [
+          {
+            leagues: [{ events }],
+          },
+        ],
+      },
+    } = await axios.get(
+      `https://site.api.espn.com/apis/v2/scoreboard/header?sport=basketball&league=mens-college-basketball&region=us&lang=en&contentorigin=espn&buyWindow=1m&showAirings=buy%2Clive%2Creplay&showZipLookup=true&tz=America%2FNew_York&dates=${date}`,
+    )
+
+    for (const event of events) {
+      if (!event.odds) continue
+      const team1 = event.odds.homeTeamOdds
+      const team2 = event.odds.awayTeamOdds
+      odds.push({
+        team1_id: Number(team1.team.id),
+        team1_name: team1.team.abbreviation,
+        team1_moneyline: team1.moneyLine,
+        team2_id: Number(team2.team.id),
+        team2_name: team2.team.abbreviation,
+        team2_moneyline: team2.moneyLine,
+      })
+    }
+
+    await new Promise<void>((resolve) => setTimeout(resolve, 500))
   }
 
   await dynamoDBClient.update({
