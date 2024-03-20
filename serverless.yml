@@ -8,6 +8,8 @@ plugins:
 custom:
   serverless-hooks: {}
 
+useDotenv: true
+
 provider:
   name: aws
   runtime: nodejs20.x
@@ -100,6 +102,7 @@ functions:
     handler: lambda.handler
     environment:
       STAGE: ${opt:stage}
+      SESSION_SECRET: ${env:SESSION_SECRET}
     events:
       - httpApi: '*'
       - schedule:

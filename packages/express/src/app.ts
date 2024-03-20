@@ -22,7 +22,7 @@ app.use(
 )
 app.use(
   session({
-    secret: 'thisIsAVerySecretSecret',
+    secret: process.env.SESSION_SECRET as string,
     resave: false,
     saveUninitialized: true,
     store,
