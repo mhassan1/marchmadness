@@ -30,7 +30,9 @@ export default class Standings extends Component<Props> {
                 onClick={this.props.onSelectUser}
                 style={{
                   cursor: 'pointer',
-                  backgroundColor:
+                  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                  // @ts-ignore
+                  '--bs-table-bg':
                     standing.username === this.props.selectedUser
                       ? 'lightgrey'
                       : '',
