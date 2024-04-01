@@ -130,7 +130,8 @@ router.post('/setup', async (req, res, next) => {
 
 router.get('/updatePicksAndOdds', async (req, res, next) => {
   try {
-    res.json(await updatePicksAndOdds())
+    await updatePicksAndOdds()
+    res.status(204).json({})
   } catch (err) {
     next(err)
   }
