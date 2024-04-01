@@ -123,7 +123,7 @@ export const oddsUpdate = async () => {
       data: {
         sports: [
           {
-            leagues: [{ events }],
+            leagues: [{ events = [] }],
           },
         ],
       },
