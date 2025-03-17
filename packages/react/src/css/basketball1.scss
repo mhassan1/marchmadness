@@ -27,10 +27,11 @@
   width: 70px;
   height: 70px;
   border-radius: 100%;
-  background: url('https://static01.nyt.com/newsgraphics/2016/08/05/presidential-forecast/0a94738b7bd2eae15d2183e7795e9a482c919490/img/trump.png');
+  background: linear-gradient(rgba(63, 195, 128, 0.5), rgba(63, 195, 128, 0.5)),
+    url('https://artelizemedianew.s3.eu-central-1.amazonaws.com/619c6ab00a2d2474ba2a11710f220076_square.webp');
   position: absolute;
   animation:
-    rotate1 2s infinite,
+    rotate1 4s infinite,
     back1 1s infinite;
   z-index: 5;
   background-repeat: repeat;

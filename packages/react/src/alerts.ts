@@ -4,7 +4,7 @@ export const onSuccess = () => {
     icon: 'success',
     html: `
     <img
-      src="https://images.news18.com/ibnlive/uploads/2020/11/1604769947_joe-biden-donald-trump.jpg"
+      src="https://assets.teenvogue.com/photos/6707bd47e9b0b1b9ba766917/16:10/w_1600,c_limit/MCDWICK_UV014.jpg"
       style="animation:wiggle 1s infinite; width: 50%;"
     />
     `,

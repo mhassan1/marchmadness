@@ -27,10 +27,14 @@
   width: 70px;
   height: 70px;
   border-radius: 100%;
-  background: url('https://www.washingtonpost.com/graphics/2018/politics/2020-presidential-hopefuls/img/cutouts/biden.png');
+  background: linear-gradient(
+      rgba(251, 231, 239, 0.5),
+      rgba(251, 231, 239, 0.5)
+    ),
+    url('https://variety.com/wp-content/uploads/2019/11/AriannaGrande_4e3e3a.png');
   position: absolute;
   animation:
-    rotate2 2s infinite,
+    rotate2 4s infinite,
     back2 1s infinite;
   z-index: 5;
   background-repeat: repeat;
