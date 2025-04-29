@@ -34,6 +34,9 @@
     "serverless-hooks": "^1.0.0",
     "ts-node": "^10.9.2"
   },
+  "resolutions": {
+    "superagent": "^9.0.0"
+  },
   "lint-staged": {
     "**/*.{ts,tsx,js,json,yml,html,scss}": "prettier --write --ignore-unknown",
     "**/*.{ts,tsx,js}": "eslint --fix"
