@@ -124,7 +124,7 @@ writeFileSync(
               S3Key: `${stage}/${timestamp}/marchmadness.zip`,
             },
             Handler: 'lambda.handler',
-            Runtime: 'nodejs20.x',
+            Runtime: 'nodejs24.x',
             FunctionName: `marchmadness-${stage}`,
             MemorySize: 512,
             Timeout: 10,
