@@ -4,7 +4,7 @@ export const onSuccess = () => {
     icon: 'success',
     html: `
     <img
-      src="https://assets.teenvogue.com/photos/6707bd47e9b0b1b9ba766917/16:10/w_1600,c_limit/MCDWICK_UV014.jpg"
+      src="https://custom-doodle.com/wp-content/uploads/doodle/auto-draft/funny-robot-dancing-doodle.gif"
       style="animation:wiggle 1s infinite; width: 50%;"
     />
     `,

@@ -233,6 +233,7 @@ export const teams = [
   [2507, 'Providence'],
   [2509, 'Purdue'],
   [2870, 'Purdue FW'],
+  [2511, 'Queens'],
   [2514, 'Quinnipiac'],
   [2515, 'Radford'],
   [227, 'Rhode Island'],
