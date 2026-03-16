@@ -5,16 +5,15 @@
     "packages/*"
   ],
   "scripts": {
-    "hook:before:package:initialize": "yarn workspaces foreach --all run build",
-    "deploy:dev": "sls deploy --stage dev",
-    "deploy:prod": "sls deploy --stage prod",
-    "teardown:dev": "sls remove --stage dev",
-    "teardown:prod": "sls remove --stage prod",
+    "deploy:dev": "./deploy.bash dev",
+    "deploy:prod": "./deploy.bash prod",
+    "teardown:dev": "./teardown.bash dev",
+    "teardown:prod": "./teardown.bash prod",
     "format": "prettier --write .",
     "lint": "eslint --fix .",
     "tsc-check": "echo Checking types... && yarn workspaces foreach --all --verbose run tsc --noEmit",
     "start": "yarn workspaces foreach --all --verbose --parallel --interlaced run start",
-    "postinstall": "husky install",
+    "prepare": "husky install",
     "putUser:dev": "STAGE=dev ts-node -r dotenv/config scripts/putUser.ts",
     "putUser:prod": "STAGE=prod ts-node -r dotenv/config scripts/putUser.ts",
     "updatePicksAndOdds:dev": "STAGE=dev ts-node -r dotenv/config scripts/updatePicksAndOdds.ts",
@@ -30,13 +29,7 @@
     "husky": "^9.0.11",
     "lint-staged": "^15.2.2",
     "prettier": "^3.2.5",
-    "serverless": "^3.38.0",
-    "serverless-hooks": "^1.0.0",
     "ts-node": "^10.9.2"
-  },
-  "resolutions": {
-    "serverless-hooks/tmp-promise": "^3.0.3",
-    "superagent": "^9.0.0"
   },
   "lint-staged": {
     "**/*.{ts,tsx,js,json,yml,html,scss}": "prettier --write --ignore-unknown",
