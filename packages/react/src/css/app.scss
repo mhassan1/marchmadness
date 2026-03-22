@@ -42,6 +42,8 @@ table.bracket {
   -webkit-border-radius: 0.6em;
   border-spacing: 0px;
   border-collapse: separate;
+  table-layout: fixed;
+  width: 100%;
 }
 
 table.bracket td {
@@ -51,8 +53,8 @@ table.bracket td {
   padding-top: 0em;
   font-size: 12px;
   height: 15px;
-  width: 110px;
-  max-width: 100px;
+  width: 90px;
+  max-width: 80px;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
