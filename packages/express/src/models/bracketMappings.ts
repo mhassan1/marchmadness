@@ -122,7 +122,7 @@ export const bracketMappings = [
   [130, 5, 65, '{"visibility":"hidden"}', '', 0, 1, '', null],
   [129, 4, 66, '{"visibility":"hidden"}', '', 0, 1, '', null],
   [128, 4, 65, '{"visibility":"hidden"}', '', 0, 1, '', null],
-  [127, 6, 35, '{"border":"1px solid orange"}', '1', 7, 0, '', null],
+  [127, 6, 35, '{"outline":"1px solid orange"}', '1', 7, 0, '', null],
   [126, 7, 35, '', '1.2', 6, 0, '', null],
   [125, 5, 35, '', '1.1', 6, 0, '', null],
   [124, 7, 51, '{"borderRight":"1px solid black"}', '1.2.2', 5, 0, '', null],
