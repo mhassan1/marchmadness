@@ -17,7 +17,6 @@ declare global {
   let __webpack_public_path__: string
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars, prefer-const
 __webpack_public_path__ = `${window.STATIC_URL}/react/build/`
 
 axios.defaults.withCredentials = true

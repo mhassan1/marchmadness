@@ -1,5 +1,4 @@
-/* eslint-env node */
-/* eslint-disable @typescript-eslint/no-var-requires */
+/* eslint-disable @typescript-eslint/no-require-imports */
 
 const serverlessExpress = require('@vendia/serverless-express')
 const { app } = require('./packages/express/build/app')

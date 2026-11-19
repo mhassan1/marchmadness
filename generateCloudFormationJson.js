@@ -1,5 +1,4 @@
-/* eslint-env node */
-/* eslint-disable @typescript-eslint/no-var-requires */
+/* eslint-disable @typescript-eslint/no-require-imports */
 
 const assert = require('assert')
 const { writeFileSync } = require('fs')

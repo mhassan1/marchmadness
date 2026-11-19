@@ -36,9 +36,7 @@ router.post('/login', async (req, res, next) => {
 
 router.post(
   '/logout',
-  (req, res, next) => {
-    req.session ? req.session.destroy(next) : next()
-  },
+  (req, res, next) => (req.session ? req.session.destroy(next) : next()),
   (req, res) => res.status(204).json({}),
 )
 

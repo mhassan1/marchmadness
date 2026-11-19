@@ -23,17 +23,18 @@
     "@vendia/serverless-express": "^4.12.6"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^7.2.0",
-    "@typescript-eslint/parser": "^7.2.0",
-    "eslint": "^8.57.0",
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.15.0",
+    "globals": "^17.14.0",
     "husky": "^9.0.11",
     "lint-staged": "^15.2.2",
     "prettier": "^3.2.5",
-    "ts-node": "^10.9.2"
+    "ts-node": "^10.9.2",
+    "typescript-eslint": "^8.73.0"
   },
   "lint-staged": {
-    "**/*.{ts,tsx,js,json,yml,html,scss}": "prettier --write --ignore-unknown",
-    "**/*.{ts,tsx,js}": "eslint --fix"
+    "**/*.{ts,tsx,js,mjs,json,yml,html,scss}": "prettier --write --ignore-unknown",
+    "**/*.{ts,tsx,js,mjs}": "eslint --fix"
   },
   "packageManager": "yarn@4.14.1"
 }
